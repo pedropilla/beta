@@ -1,4 +1,6 @@
 import React, { FormEvent, ReactElement, useCallback, useState } from 'react';
+import classnames from 'classnames';
+
 import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
 import { TokenViewModel } from '../../models/TokenViewModel';
@@ -13,6 +15,7 @@ interface TokenSwapperProps {
     outputs: TokenViewModel[];
     onRequestSwitchPairs: () => void;
     onConfirm: () => void;
+    className?: string;
 }
 
 export default function TokenSwapper({
@@ -20,6 +23,7 @@ export default function TokenSwapper({
     outputs,
     onConfirm,
     onRequestSwitchPairs,
+    className = '',
 }: TokenSwapperProps): ReactElement {
     const [selectedInputToken, setSelectedInputToken] = useState(inputs[0]);
     const [selectedOutputToken, setSelectedOutputToken] = useState(outputs[0]);
@@ -50,7 +54,7 @@ export default function TokenSwapper({
     }
 
     return (
-        <form className={s['token-swapper']} onSubmit={handleSubmit}>
+        <form className={classnames(s['token-swapper'], className)} onSubmit={handleSubmit}>
             <div className={s['token-swapper__token']}>
                 <div className={s['token-swapper__token-header']}>
                     <span>{trans('market.label.youPay')}</span>

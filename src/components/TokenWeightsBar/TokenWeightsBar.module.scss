@@ -1,0 +1,54 @@
+$border-radius: .3rem;
+
+.token-weights-bar {
+    display: flex;
+    height: 1rem;
+    border-radius: .3rem;
+    background-color: var(--c-gray);
+
+    &__weight {
+        height: 100%;
+
+        &:first-child {
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+        }
+
+        &:last-child {
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
+
+        &--c-0 {
+            background-color: var(--c-green);
+        }
+
+        &--c-1 {
+            background-color: var(--c-red);
+        }
+
+        &--c-2 {
+            background-color: var(--c-light-purple);
+        }
+
+        &--c-3 {
+            background-color: var(--c-pink);
+        }
+
+        &--c-4 {
+            background-color: var(--c-purple);
+        }
+
+        &--c-5 {
+            background-color: var(--c-blue);
+        }
+
+        &--c-6 {
+            background-color: var(--c-medium-blue);
+        }
+
+        &--c-7 {
+            background-color: var(--c-dark-purple);
+        }
+    }
+}

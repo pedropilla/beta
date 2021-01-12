@@ -2,7 +2,13 @@ import React, { ReactElement, useState } from 'react';
 import TokenSwapper from '../../containers/TokenSwapper';
 import { TokenViewModel } from '../../models/TokenViewModel';
 
-export default function TokenSwapperConnector(): ReactElement {
+interface Props {
+    className?: string;
+}
+
+export default function TokenSwapperConnector({
+    className,
+}: Props): ReactElement {
     const [switched, setSwitched] = useState(false);
     const inputs: TokenViewModel[] = [
         {
@@ -44,6 +50,7 @@ export default function TokenSwapperConnector(): ReactElement {
             outputs={switched ? inputs : outputs}
             onConfirm={onConfirm}
             onRequestSwitchPairs={handleRequestSwitchPairs}
+            className={className}
         />
     );
 }

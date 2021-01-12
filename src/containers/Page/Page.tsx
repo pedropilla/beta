@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import Menu from "../Menu";
 
 import styles from './Page.module.scss';
+import Footer from "../Footer";
 
 interface Props {
     className?: string;
@@ -28,6 +29,7 @@ export default function Page({
             <main className={pageBodyClassName}>
                 {children}
             </main>
+            <Footer />
         </div>
     );
 }

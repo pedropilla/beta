@@ -1,4 +1,5 @@
 @import "../../styles/helpers/variables";
+@import "../../styles/helpers/mixins";
 
 .menu {
     width: 100%;
@@ -8,11 +9,15 @@
     justify-content: center;
 
     &__items {
-        max-width: $container-size;
+        max-width: $large-container-size;
         width: 100%;
         display: flex;
         align-items: center;
         padding: 0 2.5rem;
+
+        @include for-size(desktop-up) {
+            padding: 0;
+        }
     }
 
     &__item {

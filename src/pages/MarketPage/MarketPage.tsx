@@ -1,5 +1,6 @@
 import React from 'react';
 import MarketHeaderConnector from '../../connectors/MarketHeaderConnector';
+import MarketStatisticsConnector from '../../connectors/MarketStatisticsConnector';
 import TokenSwapperConnector from '../../connectors/TokenSwapperConnector';
 import Page from '../../containers/Page';
 
@@ -10,7 +11,8 @@ export default function MarketPage() {
         <Page hasNavigation size="unrestricted" className={s['market-page']}>
             <MarketHeaderConnector />
             <div className={s['market-page__detail']}>
-                <TokenSwapperConnector />
+                <MarketStatisticsConnector />
+                <TokenSwapperConnector className={s['market-page__token-swapper']} />
             </div>
         </Page>
     );

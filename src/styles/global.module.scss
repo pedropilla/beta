@@ -21,6 +21,12 @@ html, body {
     height: 100%;
 }
 
+:global {
+    #root {
+        height: auto;
+    }
+}
+
 // Darkmode
 $darkmode-enabled: true;
 
@@ -40,6 +46,17 @@ $darkmode-enabled: true;
     --c-tertiary: #{$c-tertiary};
     --c-background: #{$c-background};
     --c-confirm-button: #{$c-confirm-button};
+
+    --c-red: #{$c-red};
+    --c-green: #{$c-green};
+    --c-gray: #{$c-gray};
+
+    --c-light-purple: #{$c-light-purple};
+    --c-pink: #{$c-pink};
+    --c-purple: #{$c-purple};
+    --c-blue: #{$c-blue};
+    --c-medium-blue: #{$c-medium-blue};
+    --c-dark-purple: #{$c-dark-purple};
 
     --i-background-wave: url('../assets/images/background-wave-dark.svg');
 }
