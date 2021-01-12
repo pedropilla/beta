@@ -1,8 +1,9 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import TokenSwapper from '../../containers/TokenSwapper';
 import { TokenViewModel } from '../../models/TokenViewModel';
 
 export default function TokenSwapperConnector(): ReactElement {
+    const [switched, setSwitched] = useState(false);
     const inputs: TokenViewModel[] = [
         {
             balance: '10,000.31',
@@ -33,12 +34,16 @@ export default function TokenSwapperConnector(): ReactElement {
 
     }
 
+    function handleRequestSwitchPairs() {
+        setSwitched(!switched);
+    }
+
     return (
         <TokenSwapper
-            inputs={inputs}
-            outputs={outputs}
+            inputs={switched ? outputs : inputs}
+            outputs={switched ? inputs : outputs}
             onConfirm={onConfirm}
-            onRequestSwitchPairs={onConfirm}
+            onRequestSwitchPairs={handleRequestSwitchPairs}
         />
     );
 }

@@ -1,0 +1,65 @@
+.token-dropdown {
+    position: absolute;
+    z-index: 100;
+    background-color: var(--c-secondary);
+    border: .1rem solid rgba(var(--c-white-rgb), .5);
+    border-top: none;
+    width: calc(100% + .2rem);
+    margin-top: .1rem;
+    margin-left: -1.2rem;
+    border-bottom-left-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
+
+    &__fake-top {
+        border-bottom-left-radius: 1.2rem;
+        border-bottom-right-radius: 1.2rem;
+        border-bottom: .1rem solid rgba(var(--c-white-rgb), .5);
+        background-color: var(--c-primary-dark);
+        height: 2rem;
+    }
+
+    &__content {
+        padding: 1.4rem 1rem;
+    }
+
+    &__balance {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    &__tokens {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__token {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: none;
+        border: none;
+        color: var(--c-text);
+        margin-bottom: 2rem;
+        cursor: pointer;
+        padding: 0;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__token-info {
+        display: flex;
+        align-items: center;
+    }
+
+    &__token-icon {
+        margin-right: 1rem;
+    }
+
+    &__token-balance {
+        font-size: 2rem;
+    }
+}
