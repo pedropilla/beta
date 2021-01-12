@@ -1,0 +1,28 @@
+.token-swapper {
+    width: 100%;
+    background-color: var(--c-secondary);
+    border-radius: 2.1rem;
+    min-height: 20rem;
+    padding: 1.5rem;
+    color: var(--c-text);
+
+    &__confirm {
+        height: 6rem;
+        width: 100%;
+        font-size: 2rem;
+        font-weight: bold;
+        background-color: var(--c-confirm-button);
+    }
+
+    &__token {
+        margin-bottom: 2rem;
+    }
+
+    &__token-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+}

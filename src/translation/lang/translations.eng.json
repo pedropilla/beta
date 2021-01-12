@@ -2,8 +2,24 @@
     "global.yes": "Yes",
     "global.no": "No",
     "global.none": "None",
+    "global.token": "token",
+    "global.balance": "balance",
 
     "market.extraInfo": "Extra info",
+    "market.resolutionDate": "Resolution date",
+    "market.action.confirmSwap": "Confirm swap",
+    "market.action.changeTradingPair": "Change trading pair",
+
+    "market.label.youPay": "You pay",
+    "market.label.youReceive": "You receive",
+    "market.label.overview": "Overview",
+    "market.overview.rate": "Rate",
+    "market.overview.inverseRate": "Inverse rate",
+    "market.overview.estimatedFee": "Estimated fee",
+
+    "auth.login": "Login",
+
+    "navigation.back": "Back",
 
     "page.home.title": "Flux"
 }

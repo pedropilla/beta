@@ -1,0 +1,36 @@
+@import "../../styles/helpers/mixins";
+
+.market-header {
+    background-color: var(--c-secondary);
+    height: 25.8rem;
+    padding: 2.2rem;
+    color: var(--c-text);
+
+    @include for-size(desktop-up) {
+        height: 28.1rem;
+    }
+
+    &__back-button {
+        margin-bottom: 1.6rem;
+    }
+
+    &__title {
+        color: var(--c-text);
+        font-weight: 400;
+        font-size: 2.5rem;
+        line-height: 2.9rem;
+        margin: 0 0 0.6rem;
+    }
+
+    &__resolution-date {
+        font-size: 1.4rem;
+    }
+
+    &__resolution-date-title {
+        font-weight: 400;
+    }
+
+    &__resolution-date-stamp {
+        font-weight: bold;
+    }
+}

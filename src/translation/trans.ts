@@ -17,7 +17,12 @@ function replaceAttributes(label: string, options: Attributes = {}): string {
     });
 }
 
-export default function trans(key: string, attributes?: Attributes): string {
+export function ucFirstLetter(text: string): string {
+    return text.charAt(0).toUpperCase() + text.substring(1);
+}
+
+
+export default function trans(key: string, attributes?: Attributes, uppercaseFirstLetter?: boolean): string {
     // @ts-ignore
     const result: string = translations[key];
 
@@ -25,7 +30,8 @@ export default function trans(key: string, attributes?: Attributes): string {
         return key;
     }
 
-    return replaceAttributes(result, attributes);
+    const resultWithAttributes = replaceAttributes(result, attributes);
+    return uppercaseFirstLetter ? ucFirstLetter(resultWithAttributes) : resultWithAttributes;
 }
 
 export function booleanToYesNo(bool = false): string {

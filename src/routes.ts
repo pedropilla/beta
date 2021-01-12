@@ -1,5 +1,6 @@
 import * as Router from 'react-router';
 import HomePage from './pages/HomePage';
+import MarketPage from './pages/MarketPage';
 
 interface RouteProps extends Router.RouteProps {
     inNavigation: boolean;
@@ -10,6 +11,7 @@ interface RouteProps extends Router.RouteProps {
 
 export const routePaths = {
     root: () => '/',
+    marketDetail: (marketId = ':marketId') => `/markets/${marketId}`,
 }
 
 export const routes: RouteProps[] = [
@@ -20,5 +22,13 @@ export const routes: RouteProps[] = [
         key: 'home',
         label: 'Home',
         path: routePaths.root(),
+    },
+    {
+        component: MarketPage,
+        exact: true,
+        inNavigation: false,
+        key: 'market',
+        label: 'Market',
+        path: routePaths.marketDetail(),
     }
 ];

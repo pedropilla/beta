@@ -1,0 +1,16 @@
+.background-wave {
+    background-image: var(--i-background-wave);
+    background-color: var(--c-background);
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    z-index: -1;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}

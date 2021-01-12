@@ -1,0 +1,42 @@
+.token-select {
+    border: .1rem solid rgba(var(--c-white-rgb), .5);
+    background-color: var(--c-primary-dark);
+    border-radius: 1.2rem;
+    padding: 1.1rem;
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.4rem;
+        margin-bottom: 1.2rem;
+    }
+
+    &__token-icon {
+        margin-right: .5rem;
+    }
+
+    &__inputs {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__inputs-info {
+        display: flex;
+        align-items: center;
+    }
+
+    &__token-name {
+        text-align: left;
+        margin-left: .5rem;
+    }
+
+    &__input {
+        text-align: right;
+        background-color: transparent;
+        color: var(--c-text);
+        border: none;
+        font-size: 2rem;
+        width: 9rem;
+    }
+}

@@ -1,0 +1,17 @@
+@import "../../styles/helpers/variables";
+
+.page {
+    // background-color: var(--c-background);
+
+    &__body {
+        max-width: $container-size;
+
+        &--large {
+            max-width: $large-container-size;
+        }
+
+        &--unrestricted {
+            max-width: 100%;
+        }
+    }
+}
