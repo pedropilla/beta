@@ -1,12 +1,12 @@
 const COLORS = [
-    'var(--c-green)',
-    'var(--c-red)',
-    'var(--c-light-purple)',
-    'var(--c-pink)',
-    'var(--c-purple)',
-    'var(--c-blue)',
-    'var(--c-medium-blue)',
-    'var(--c-dark-purple)',
+    '--c-green',
+    '--c-red',
+    '--c-light-purple',
+    '--c-pink',
+    '--c-purple',
+    '--c-blue',
+    '--c-medium-blue',
+    '--c-dark-purple',
 ];
 
 export function getColorForOutcome(outcomeId: number) {

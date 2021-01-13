@@ -25,11 +25,19 @@
 .infoWrapper {
     @include for-size(desktop-up) {
         padding-right: 3rem;
+        width: 61%;
     }
 }
 
 .tokenSwapper {
+    margin-bottom: 5rem;
+
     @include for-size(desktop-up) {
-        max-width: 43.5rem;
+        width: 39%;
     }
+}
+
+.stats {
+    margin-bottom: 5rem;
+    width: 100%;
 }

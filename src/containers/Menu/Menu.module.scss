@@ -11,13 +11,13 @@
     z-index: 100;
 
     &__items {
-        max-width: $large-container-size;
         width: 100%;
         display: flex;
         align-items: center;
         padding: 0 2.5rem;
 
         @include for-size(desktop-up) {
+            max-width: $large-container-size;
             padding: 0;
         }
     }

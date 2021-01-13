@@ -22,7 +22,7 @@ export default function TokenWeightsBar({
                     className={s['token-weights-bar__weight']}
                     style={{
                         width: `${weight}%`,
-                        backgroundColor: getColorForOutcome(index),
+                        backgroundColor: `var(${getColorForOutcome(index)})`,
                     }}
                 />
             ))}

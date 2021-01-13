@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.2",
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
+    "chart.js": "^2.9.4",
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "react": "^17.0.1",
@@ -46,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.29",
     "@types/classnames": "^2.2.11",
     "@types/dotenv": "^8.2.0",
     "@types/react": "^17.0.0",

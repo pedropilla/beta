@@ -23,6 +23,15 @@
     "market.overview.inverseRate": "Inverse rate",
     "market.overview.estimatedFee": "Estimated fee",
 
+    "market.category.crypto": "Crypto",
+    "market.category.esports": "Esports",
+    "market.category.meme": "Memes",
+    "market.category.politics": "Politics",
+    "market.category.sports": "Sports",
+    "market.category.startups": "Startups",
+    "market.category.stocks": "Stocks",
+    "market.category.viral": "Viral",
+
     "auth.login": "Login",
 
     "navigation.back": "Back",

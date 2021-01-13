@@ -7,6 +7,7 @@ import MarketStatisticsConnector from '../../connectors/MarketStatisticsConnecto
 import TokenSwapperConnector from '../../connectors/TokenSwapperConnector';
 import Page from '../../containers/Page';
 import { fetchMarketById } from '../../redux/market/marketActions';
+import { fetchPricesHistoryByMarketId } from '../../redux/priceHistory/priceHistoryActions';
 
 import s from './MarketPage.module.scss';
 
@@ -20,6 +21,7 @@ export default function MarketPage() {
 
     useEffect(() => {
         dispatch(fetchMarketById(marketId));
+        dispatch(fetchPricesHistoryByMarketId(marketId))
     }, [dispatch, marketId]);
 
     return (
@@ -27,7 +29,7 @@ export default function MarketPage() {
             <MarketHeaderConnector />
             <div className={s.details}>
                 <div className={s.infoWrapper}>
-                    <MarketStatisticsConnector />
+                    <MarketStatisticsConnector className={s.stats} />
                     <MarketResolutionInfoConenctor />
                 </div>
                 <TokenSwapperConnector className={s.tokenSwapper} />

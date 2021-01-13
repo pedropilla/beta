@@ -23,7 +23,7 @@ export default function MarketOpinionCard({
                 {market.outcomes.map((outcome, index) => (
                     <div key={outcome.outcomeId} className={s['outcome']}>
                         <div className={s['outcome-label-wrapper']}>
-                            <div style={{ backgroundColor: getColorForOutcome(index) }} className={s['color-label']} />
+                            <div style={{ backgroundColor: `var(${getColorForOutcome(index)})` }} className={s['color-label']} />
                             <span>{outcome.outcomeLabel}</span>
                         </div>
                         <span>{outcome.weight}%</span>

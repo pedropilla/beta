@@ -16,23 +16,49 @@
 }
 
 .wrapper {
-    max-width: $large-container-size;
-    margin: 0 auto;
+    margin: 2rem auto 0;
     display: flex;
     align-items: center;
+
+    @include for-size(desktop-up) {
+        max-width: $large-container-size;
+    }
 }
 
-.header-item {
+.title {
+    color: var(--c-text);
+    font-weight: 400;
+    font-size: 2.5rem;
+    line-height: 2.9rem;
+    margin: 0 0 0.6rem;
+
     @include for-size(desktop-up) {
-        width: 33.33%;
+        font-size: 3rem;
+        line-height: 3.9rem;
+        margin-bottom: 2.5rem;
     }
+}
+
+.resolutionDate {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.headerItem {
+    @include for-size(desktop-up) {
+        width: 50%;
+    }
+}
+
+.categoryTag {
+    margin-bottom: 2rem;
 }
 
 .bubble {
     @include for-size(desktop-up) {
         height: 47rem;
         width: 47rem;
-        transform: translate(170%, -20%);
+        transform: translate(200%, -25%);
 
         position: absolute;
         background-color: var(--c-primary-dark);
@@ -42,8 +68,9 @@
     }
 }
 
-.opinion-card-wrapper {
+.opinionCardWrapper {
     display: none;
+    width: 30%;
 
     @include for-size(desktop-up) {
         display: block;
@@ -53,22 +80,6 @@
 .market-header {
     &__back-button {
         margin-bottom: 1.6rem;
-    }
-
-    &__title {
-        color: var(--c-text);
-        font-weight: 400;
-        font-size: 2.5rem;
-        line-height: 2.9rem;
-        margin: 0 0 0.6rem;
-
-        @include for-size(desktop-up) {
-            font-size: 3rem;
-        }
-    }
-
-    &__resolution-date {
-        font-size: 1.4rem;
     }
 
     &__resolution-date-title {
