@@ -1,4 +1,5 @@
 import React from 'react';
+import { default as MuiButton } from '@material-ui/core/Button';
 
 import s from './Button.module.scss';
 
@@ -14,6 +15,6 @@ export default function Button({
     ...props
 }: ButtonProps) {
     return (
-        <button className={`${s.button} ${className}`} {...props}>{children}</button>
+        <MuiButton className={`${s.button} ${className}`}>{children}</MuiButton>
     );
 }

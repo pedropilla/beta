@@ -13,6 +13,8 @@
     "market.action.switchTokens": "Switch tokens",
     "market.action.changeTradingPair": "Change trading pair",
 
+    "market.label.totalVolume": "Total volume",
+    "market.label.opinion": "What does the market think?",
     "market.label.youPay": "You pay",
     "market.label.youReceive": "You receive",
     "market.label.overview": "Overview",

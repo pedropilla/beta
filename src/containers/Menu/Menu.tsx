@@ -23,7 +23,9 @@ export default function Menu({
         <header className={s.menu}>
             <div className={s.menu__items}>
                 <div className={s.menu__item}>
-                    <img className={s.menu__logo} src={theme === 'light' ? fluxLogoBlack : fluxLogoWhite} alt="Flux" />
+                    <a href="/">
+                        <img className={s.menu__logo} src={theme === 'light' ? fluxLogoBlack : fluxLogoWhite} alt="Flux home" />
+                    </a>
                 </div>
                 <div className={s.menu__item} />
                 <div className={classnames(s.menu__item, s['menu__last-item'])}>

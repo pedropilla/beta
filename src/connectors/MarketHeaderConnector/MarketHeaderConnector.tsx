@@ -1,6 +1,7 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useReducer } from 'react';
+import { useSelector } from 'react-redux';
 import MarketHeader from '../../containers/MarketHeader';
-import { Market } from '../../models/Market';
+import { Reducers } from '../../redux/reducers';
 
 interface Props {
     className?: string;
@@ -9,11 +10,11 @@ interface Props {
 export default function MarketHeaderConnector({
     className,
 }: Props): ReactElement {
-    const market: Market = {
-        id: '12',
-        description: "Will SpaceX launch a second manned mission in 2020?",
-        resolutionDate: new Date(),
-    };
+    const market = useSelector((store: Reducers) => store.market.marketDetail);
+
+    if (!market) {
+        return <div />;
+    }
 
     return (
         <MarketHeader market={market} className={className} />

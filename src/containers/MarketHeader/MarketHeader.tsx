@@ -1,15 +1,16 @@
 import React from 'react';
 import classnames from 'classnames';
 import LinkButton from '../../components/LinkButton';
-import { Market } from '../../models/Market';
+import { MarketViewModel } from '../../models/Market';
 import { formatResolutionDate } from '../../services/MarketService';
 import trans from '../../translation/trans';
 
 import s from './MarketHeader.module.scss';
-import TokenWeightsBar from '../../components/TokenWeightsBar';
+import MarketOpinionCard from '../../compositions/MarketOpinionCard';
+import { getBubbleForCategory } from '../../utils/getBubbleForCategory';
 
 interface Props {
-    market: Market;
+    market: MarketViewModel;
     className?: string;
 }
 
@@ -18,9 +19,9 @@ export default function MarketHeader({
     className = '',
 }: Props) {
     return (
-        <header className={classnames(s['market-header'], className)}>
-            <div className={s['market-header__wrapper']}>
-                <div>
+        <header className={classnames(s['root'], className)}>
+            <div className={s['wrapper']}>
+                <div className={s['header-item']}>
                     <LinkButton className={s['market-header__back-button']} href="/">
                         {trans('navigation.back')}
                     </LinkButton>
@@ -34,10 +35,10 @@ export default function MarketHeader({
                         </span>
                     </span>
                 </div>
-                <div>
-                    <TokenWeightsBar weights={[12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5]} />
-                    <TokenWeightsBar weights={[]} />
+                <div className={classnames(s['header-item'], s['opinion-card-wrapper'])}>
+                    <MarketOpinionCard market={market} />
                 </div>
+                <div className={s['bubble']} style={{ backgroundImage: `url(${getBubbleForCategory(market.category)})` }} />
             </div>
         </header>
     );

@@ -37,7 +37,8 @@ $darkmode-enabled: true;
 :root {
     --f-primary: #{$f-primary};
     --c-primary: #{$c-primary};
-    --c-secondary: #{$c-secondary};
+    --c-secondary: rgb(#{$c-secondary-rgb});
+    --c-secondary-rgb: #{$c-secondary-rgb};
     --c-black: #{$c-black};
     --c-white: rgb(#{$c-white-rgb});
     --c-white-rgb: #{$c-white-rgb};

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { StylesProvider } from '@material-ui/core/styles';
 
 import App from './App';
 import configureStore from './redux/store';
@@ -13,7 +14,9 @@ const store = configureStore({});
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <App />
+            <StylesProvider injectFirst>
+                <App />
+            </StylesProvider>
         </BrowserRouter>
     </Provider>,
     document.getElementById('root')

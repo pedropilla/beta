@@ -18,20 +18,17 @@
         height: 2rem;
     }
 
-    &__content {
-        padding: 1.4rem 1rem;
-    }
-
     &__balance {
         display: flex;
         justify-content: flex-end;
         font-size: 1.2rem;
-        margin-bottom: 1rem;
+        padding: 1.4rem 1rem;
     }
 
     &__tokens {
         display: flex;
         flex-direction: column;
+        margin-bottom: 1rem;
     }
 
     &__token {
@@ -41,12 +38,11 @@
         background: none;
         border: none;
         color: var(--c-text);
-        margin-bottom: 2rem;
         cursor: pointer;
-        padding: 0;
+        padding: 1rem 1rem;
 
-        &:last-child {
-            margin-bottom: 0;
+        &:hover {
+            opacity: 0.5;
         }
     }
 

@@ -1,22 +1,56 @@
 @import "../../styles/helpers/mixins";
 @import "../../styles/helpers/variables";
 
-.market-header {
+.root {
     background-color: var(--c-secondary);
-    height: 25.8rem;
+    min-height: 25.8rem;
     padding: 2.2rem;
     color: var(--c-text);
+    position: relative;
+    z-index: 1;
 
     @include for-size(desktop-up) {
-        height: 28.1rem;
+        min-height: 28.1rem;
         margin-bottom: 7.2rem;
     }
+}
 
-    &__wrapper {
-        max-width: $large-container-size;
-        margin: 0 auto;
+.wrapper {
+    max-width: $large-container-size;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.header-item {
+    @include for-size(desktop-up) {
+        width: 33.33%;
     }
+}
 
+.bubble {
+    @include for-size(desktop-up) {
+        height: 47rem;
+        width: 47rem;
+        transform: translate(170%, -20%);
+
+        position: absolute;
+        background-color: var(--c-primary-dark);
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+    }
+}
+
+.opinion-card-wrapper {
+    display: none;
+
+    @include for-size(desktop-up) {
+        display: block;
+    }
+}
+
+.market-header {
     &__back-button {
         margin-bottom: 1.6rem;
     }

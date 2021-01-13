@@ -18,37 +18,5 @@ $border-radius: .3rem;
             border-top-right-radius: $border-radius;
             border-bottom-right-radius: $border-radius;
         }
-
-        &--c-0 {
-            background-color: var(--c-green);
-        }
-
-        &--c-1 {
-            background-color: var(--c-red);
-        }
-
-        &--c-2 {
-            background-color: var(--c-light-purple);
-        }
-
-        &--c-3 {
-            background-color: var(--c-pink);
-        }
-
-        &--c-4 {
-            background-color: var(--c-purple);
-        }
-
-        &--c-5 {
-            background-color: var(--c-blue);
-        }
-
-        &--c-6 {
-            background-color: var(--c-medium-blue);
-        }
-
-        &--c-7 {
-            background-color: var(--c-dark-purple);
-        }
     }
 }
