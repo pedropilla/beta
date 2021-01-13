@@ -1,4 +1,4 @@
-import React, { ReactElement, useReducer } from 'react';
+import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import MarketHeader from '../../containers/MarketHeader';
 import { Reducers } from '../../redux/reducers';

@@ -8,6 +8,7 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
             id: marketId,
             description: "Will SpaceX launch a second manned mission in 2020?",
             resolutionDate: new Date(),
+            extraInfo: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             volume: '100000000',
             category: MarketCategory.Crypto,
             outcomes: [

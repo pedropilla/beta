@@ -18,4 +18,5 @@ export interface MarketViewModel {
     outcomes: PoolBalanceViewModel[];
     volume: string;
     category: MarketCategory;
+    extraInfo: string;
 }

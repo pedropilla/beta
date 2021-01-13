@@ -23,14 +23,14 @@ export default function MarketPage() {
     }, [dispatch, marketId]);
 
     return (
-        <Page hasNavigation size="unrestricted" className={s['market-page']}>
+        <Page hasNavigation size="unrestricted" className={s.root}>
             <MarketHeaderConnector />
-            <div className={s['market-page__detail']}>
-                <div>
+            <div className={s.details}>
+                <div className={s.infoWrapper}>
                     <MarketStatisticsConnector />
                     <MarketResolutionInfoConenctor />
                 </div>
-                <TokenSwapperConnector className={s['market-page__token-swapper']} />
+                <TokenSwapperConnector className={s.tokenSwapper} />
             </div>
         </Page>
     );
