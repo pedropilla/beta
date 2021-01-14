@@ -11,18 +11,11 @@ interface RouteProps extends Router.RouteProps {
 
 export const routePaths = {
     root: () => '/',
+    resolute: () => '/resolute',
     marketDetail: (marketId = ':marketId') => `/markets/${marketId}`,
 }
 
 export const routes: RouteProps[] = [
-    {
-        component: HomePage,
-        exact: true,
-        inNavigation: false,
-        key: 'home',
-        label: 'Home',
-        path: routePaths.root(),
-    },
     {
         component: MarketPage,
         exact: true,
@@ -30,5 +23,13 @@ export const routes: RouteProps[] = [
         key: 'market',
         label: 'Market',
         path: routePaths.marketDetail(),
-    }
+    },
+    {
+        component: HomePage,
+        exact: false,
+        inNavigation: false,
+        key: 'home',
+        label: 'Home',
+        path: routePaths.root(),
+    },
 ];

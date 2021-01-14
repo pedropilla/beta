@@ -7,6 +7,9 @@
 
     "global.action.cancel": "Cancel",
 
+    "pages.marketOverview": "Trade",
+    "pages.resoluteOverview": "Resolute",
+
     "market.extraInfo": "Extra info",
     "market.resolutionDate": "Resolution date",
     "market.action.confirmSwap": "Confirm swap",

@@ -14,7 +14,7 @@ export default function MarketOpinionCard({
     market,
 }: Props): ReactElement {
     return (
-        <div className={s['root']}>
+        <div className={s.root}>
             <h2 className={s['title']}>
                 {trans('market.label.opinion')}
             </h2>

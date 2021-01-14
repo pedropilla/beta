@@ -31,6 +31,7 @@ interface CategoryInfo {
     circleIcon: string;
     category: MarketCategory;
     title: string;
+    color: string;
 }
 
 export default function getCategoryInfo(category: MarketCategory): CategoryInfo {
@@ -42,6 +43,7 @@ export default function getCategoryInfo(category: MarketCategory): CategoryInfo 
                 cardIcon: '',
                 icon: iconCrypto,
                 title: trans('market.category.crypto'),
+                color: '#5400FF',
             };
         case MarketCategory.Esports:
             return {
@@ -50,6 +52,7 @@ export default function getCategoryInfo(category: MarketCategory): CategoryInfo 
                 cardIcon: '',
                 icon: iconEsports,
                 title: trans('market.category.esports'),
+                color: '#4C6BF5',
             };
         case MarketCategory.Meme:
             return {
@@ -58,6 +61,7 @@ export default function getCategoryInfo(category: MarketCategory): CategoryInfo 
                 cardIcon: '',
                 icon: iconMeme,
                 title: trans('market.category.meme'),
+                color: '#FF00FD',
             };
         case MarketCategory.Politics:
             return {
@@ -66,6 +70,7 @@ export default function getCategoryInfo(category: MarketCategory): CategoryInfo 
                 cardIcon: '',
                 icon: iconPolitics,
                 title: trans('market.category.politics'),
+                color: '#0004FF',
             };
         case MarketCategory.Sports:
             return {
@@ -74,6 +79,7 @@ export default function getCategoryInfo(category: MarketCategory): CategoryInfo 
                 cardIcon: '',
                 icon: iconSports,
                 title: trans('market.category.sports'),
+                color: '#FF1958',
             };
         case MarketCategory.Startups:
             return {
@@ -82,6 +88,7 @@ export default function getCategoryInfo(category: MarketCategory): CategoryInfo 
                 cardIcon: '',
                 icon: iconStartups,
                 title: trans('market.category.startups'),
+                color: '#7400DA',
             };
         case MarketCategory.Stocks:
             return {
@@ -90,6 +97,7 @@ export default function getCategoryInfo(category: MarketCategory): CategoryInfo 
                 cardIcon: '',
                 icon: iconStocks,
                 title: trans('market.category.stocks'),
+                color: '#C45DFF',
             };
         case MarketCategory.Viral:
             return {
@@ -98,6 +106,7 @@ export default function getCategoryInfo(category: MarketCategory): CategoryInfo 
                 cardIcon: '',
                 icon: iconViral,
                 title: trans('market.category.viral'),
+                color: '#FF009C',
             };
         default:
             return {
@@ -105,7 +114,8 @@ export default function getCategoryInfo(category: MarketCategory): CategoryInfo 
                 category,
                 cardIcon: '',
                 icon: iconStocks,
-                title: trans('market.category.stocks'),
+                title: '',
+                color: '#C45DFF',
             };
     }
 }
