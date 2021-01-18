@@ -12,11 +12,11 @@
 }
 
 .market {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
 
     @include for-size($default-bigger-screen-breakpoint) {
-        width: calc(33.33% - 1.4rem);
-        margin: 0 1rem 2rem;
+        width: calc(33.33% - 0.875rem);
+        margin: 0 0.625rem 1.25rem;
 
         &:nth-child(3n + 3) {
             margin-right: 0;

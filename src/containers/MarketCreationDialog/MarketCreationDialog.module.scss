@@ -1,17 +1,17 @@
 .filters {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5625rem;
 }
 
 .filter {
-    margin-bottom: 1rem;
-    margin-right: 1rem;
+    margin-bottom: 0.625rem;
+    margin-right: 0.625rem;
 }
 
 .inputsWrapper {
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
 }
 
 .categories {
@@ -22,6 +22,6 @@
 .label {
     color: var(--c-text);
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.625rem;
     font-weight: bold;
 }

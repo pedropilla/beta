@@ -4,11 +4,11 @@
 
 .root {
     background-color: var(--c-primary-dark);
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
 }
 
 .details {
-    margin-top: 2.9rem;
+    margin-top: 1.8125rem;
     padding: 0 $mobile-container-padding;
     display: flex;
     flex-direction: column-reverse;
@@ -24,13 +24,13 @@
 
 .infoWrapper {
     @include for-size($default-bigger-screen-breakpoint) {
-        padding-right: 3rem;
+        padding-right: 1.875rem;
         width: 61%;
     }
 }
 
 .tokenSwapper {
-    margin-bottom: 5rem;
+    margin-bottom: 3.125rem;
 
     @include for-size($default-bigger-screen-breakpoint) {
         width: 39%;
@@ -38,23 +38,23 @@
 }
 
 .stats {
-    margin-bottom: 5rem;
+    margin-bottom: 3.125rem;
     width: 100%;
 }
 
 .comments {
     color: white;
     padding: 0 $mobile-container-padding;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
 
     h2 {
-        font-size: 2.8rem;
+        font-size: 1.75rem;
         font-weight: normal;
     }
 
     @include for-size($default-bigger-screen-breakpoint) {
         max-width: $large-container-size;
-        margin: 0 auto 2rem;
+        margin: 0 auto 1.25rem;
         padding: 0;
     }
 }

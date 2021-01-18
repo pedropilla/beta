@@ -3,7 +3,7 @@
 
 .root {
     background-color: var(--c-secondary);
-    height: 16rem;
+    height: 10rem;
 }
 
 .wrapper {
@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    padding: 0 2rem;
+    padding: 0 1.25rem;
 
     @include for-size($default-bigger-screen-breakpoint) {
         max-width: $large-container-size;
@@ -21,11 +21,11 @@
 }
 
 .logo {
-    width: 9rem;
+    width: 5.625rem;
 }
 
 .social {
-    margin-right: 2rem;
+    margin-right: 1.25rem;
 
     &:last-child {
         margin-right: 0;

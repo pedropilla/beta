@@ -1,31 +1,31 @@
 .token-swapper {
     position: relative;
-    padding: 0 0.1rem;
+    padding: 0 1px;
 
     &__confirm {
-        height: 6rem;
+        height: 3.75rem;
         width: 100%;
-        font-size: 2rem;
+        font-size: 1.25rem;
         font-weight: bold;
         background-color: var(--c-confirm-button);
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
     }
 
     &__token {
-        margin-bottom: 2rem;
+        margin-bottom: 1.25rem;
     }
 
     &__token-header {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-        padding: 0 1rem;
+        margin-bottom: 0.625rem;
+        font-size: 0.75rem;
+        padding: 0 0.625rem;
     }
 
     &__switch-tokens {
         position: absolute;
         left: 48%;
-        margin-top: -2rem;
+        margin-top: -1.25rem;
     }
 }

@@ -12,20 +12,20 @@
 .filters {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5625rem;
 }
 
 .filter {
-    margin-bottom: 1rem;
-    margin-right: 1rem;
+    margin-bottom: 0.625rem;
+    margin-right: 0.625rem;
 }
 
 .market {
-    margin-bottom: 6rem;
+    margin-bottom: 3.75rem;
 
     @include for-size($default-bigger-screen-breakpoint) {
-        width: calc(33.33% - 1.4rem);
-        margin: 0 1rem 6rem;
+        width: calc(33.33% - 0.875rem);
+        margin: 0 0.625rem 3.75rem;
 
         &:nth-child(3n + 3) {
             margin-right: 0;

@@ -2,33 +2,33 @@
     position: absolute;
     z-index: 100;
     background-color: var(--c-secondary);
-    border: .1rem solid rgba(var(--c-white-rgb), .5);
+    border: 1px solid rgba(var(--c-white-rgb), .5);
     border-top: none;
-    width: calc(100% + .2rem);
-    margin-top: .1rem;
-    margin-left: -1.2rem;
-    border-bottom-left-radius: 1.2rem;
-    border-bottom-right-radius: 1.2rem;
+    width: calc(100% + 2px);
+    margin-top: 1px;
+    margin-left: -0.75rem;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
 
     &__fake-top {
-        border-bottom-left-radius: 1.2rem;
-        border-bottom-right-radius: 1.2rem;
-        border-bottom: .1rem solid rgba(var(--c-white-rgb), .5);
+        border-bottom-left-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
+        border-bottom: 1px solid rgba(var(--c-white-rgb), .5);
         background-color: var(--c-primary-dark);
-        height: 2rem;
+        height: 1.25rem;
     }
 
     &__balance {
         display: flex;
         justify-content: flex-end;
-        font-size: 1.2rem;
-        padding: 1.4rem 1rem;
+        font-size: 0.75rem;
+        padding: 0.875rem 0.625rem;
     }
 
     &__tokens {
         display: flex;
         flex-direction: column;
-        margin-bottom: 1rem;
+        margin-bottom: 0.625rem;
     }
 
     &__token {
@@ -39,7 +39,7 @@
         border: none;
         color: var(--c-text);
         cursor: pointer;
-        padding: 1rem 1rem;
+        padding: 0.625rem;
 
         &:hover {
             opacity: 0.5;
@@ -52,10 +52,10 @@
     }
 
     &__token-icon {
-        margin-right: 1rem;
+        margin-right: 0.625rem;
     }
 
     &__token-balance {
-        font-size: 2rem;
+        font-size: 1.25rem;
     }
 }
