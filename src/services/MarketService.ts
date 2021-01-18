@@ -1,6 +1,11 @@
 import { format } from 'date-fns';
 import { MarketCategory, MarketViewModel } from '../models/Market';
 
+export interface MarketFormValues {
+    categories: MarketCategory[];
+    resolutionDate: Date;
+}
+
 
 export async function getMarketById(marketId: string): Promise<MarketViewModel | null> {
     try {
@@ -10,7 +15,7 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
             resolutionDate: new Date(),
             extraInfo: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             volume: '100000000',
-            category: MarketCategory.Crypto,
+            category: ['StakeGG'],
             outcomes: [
                 {
                     outcomeId: 0,
@@ -34,15 +39,21 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
     }
 }
 
-export async function getMarkets(): Promise<MarketViewModel[]> {
+export interface MarketFilters {
+    categories?: MarketCategory[];
+}
+
+export async function getMarkets(filters: MarketFilters): Promise<MarketViewModel[]> {
     try {
+        const categories = Object.values(MarketCategory);
         const market: MarketViewModel = {
             id: '6',
             description: "Will SpaceX launch a second manned mission in 2020?",
             resolutionDate: new Date(),
             extraInfo: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             volume: '100000000',
-            category: MarketCategory.Crypto,
+            // category: [],
+            category: ['StakeGG', 'CSGP'],
             outcomes: [
                 {
                     outcomeId: 0,
@@ -59,7 +70,51 @@ export async function getMarkets(): Promise<MarketViewModel[]> {
             ],
         };
 
-        return [market, market, market, market, market, market];
+        const x = new Array(23).fill(0).map((nan, index) => ({
+            ...market,
+            id: index.toString(),
+        }));
+
+        return x;
+    } catch (error) {
+        console.error('[getMarketById]', error);
+        return [];
+    }
+}
+
+export async function getResolutingMarkets(): Promise<MarketViewModel[]> {
+    try {
+        const categories = Object.values(MarketCategory);
+        const market: MarketViewModel = {
+            id: '6',
+            description: "Will BTC hit $1000000 by the end of 2020?",
+            resolutionDate: new Date(),
+            extraInfo: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            volume: '100000000',
+            // category: [],
+            category: ['StakeGG', 'CSGP'],
+            outcomes: [
+                {
+                    outcomeId: 0,
+                    price: 0.4,
+                    weight: 40,
+                    outcomeLabel: 'Yes',
+                },
+                {
+                    outcomeId: 1,
+                    price: 0.6,
+                    weight: 60,
+                    outcomeLabel: 'No',
+                }
+            ],
+        };
+
+        const x = new Array(23).fill(0).map((nan, index) => ({
+            ...market,
+            id: index.toString(),
+        }));
+
+        return x;
     } catch (error) {
         console.error('[getMarketById]', error);
         return [];

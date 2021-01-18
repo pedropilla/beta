@@ -4,43 +4,40 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 import s from './TabBar.module.scss';
-import { useHistory, useLocation } from 'react-router';
-
-interface TabBarItem {
-    href: string;
+export interface TabBarItem {
+    id: string;
     label: string;
 }
 
 interface Props {
     items: TabBarItem[];
+    activeId: string;
+    onTabClick: (item: TabBarItem) => void;
     className?: string;
+    variant?: 'standard' | 'scrollable' | 'fullWidth';
 }
 
 export default function TabBar({
     items,
+    onTabClick,
+    activeId,
+    variant = 'standard',
     className = '',
 }: Props): ReactElement {
-    const history = useHistory();
-    const location = useLocation();
-
-    function onTabClick(href: string) {
-        history.push(href);
-    }
-
     return (
         <Tabs
             classes={{ indicator: s.indicator }}
             className={classnames(s.root, className)}
-            variant="fullWidth"
-            value={location.pathname}
+            variant={variant}
+            value={activeId}
         >
             {items.map(tab => (
                 <Tab
-                    key={tab.href}
-                    onClick={() => onTabClick(tab.href)}
+                    key={tab.id}
+                    onClick={() => onTabClick(tab)}
                     className={s.tab}
                     label={tab.label}
-                    value={tab.href}
+                    value={tab.id}
                 />
             ))}
         </Tabs>

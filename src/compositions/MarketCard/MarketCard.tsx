@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import { MarketViewModel } from '../../models/Market';
 import MarketInfoCard from '../../components/MarketInfoCard';
@@ -19,9 +20,9 @@ export default function MarketCard({
     className = '',
 }: Props) {
     return (
-        <a href={href} className={classnames(s.root, className)}>
+        <Link to={href} className={classnames(s.root, className)}>
             <MarketInfoCard market={market} className={s.infoCard} />
             <MarketOpinionCard market={market} />
-        </a>
+        </Link>
     );
 }

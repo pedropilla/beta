@@ -1,14 +1,15 @@
 import { PoolBalanceViewModel } from "./PoolBalance";
 
 export enum MarketCategory {
-    Crypto = 'crypto',
+    Stocks = 'stocks',
     Esports = 'esports',
     Meme = 'meme',
     Politics = 'politics',
+    Viral = 'viral',
+    Crypto = 'crypto',
     Sports = 'sports',
     Startups = 'startups',
-    Stocks = 'stocks',
-    Viral = 'viral',
+    Unknown = 'unknown',
 }
 
 export interface MarketViewModel {
@@ -17,6 +18,6 @@ export interface MarketViewModel {
     resolutionDate: Date;
     outcomes: PoolBalanceViewModel[];
     volume: string;
-    category: MarketCategory;
+    category: (MarketCategory | string)[];
     extraInfo: string;
 }

@@ -4,8 +4,10 @@
     "global.none": "None",
     "global.token": "token",
     "global.balance": "balance",
+    "global.comments": "Comments",
 
     "global.action.cancel": "Cancel",
+    "global.action.submit": "Submit",
 
     "pages.marketOverview": "Trade",
     "pages.resoluteOverview": "Resolute",
@@ -13,6 +15,7 @@
     "market.extraInfo": "Extra info",
     "market.resolutionDate": "Resolution date",
     "market.action.confirmSwap": "Confirm swap",
+    "market.action.confirmLiquidity": "Add liquidity",
     "market.action.switchTokens": "Switch tokens",
     "market.action.changeTradingPair": "Change trading pair",
 
@@ -22,6 +25,9 @@
     "market.label.youPay": "You pay",
     "market.label.youReceive": "You receive",
     "market.label.overview": "Overview",
+    "market.label.swap": "Swap",
+    "market.label.liquidity": "Liquidity",
+
     "market.overview.rate": "Rate",
     "market.overview.inverseRate": "Inverse rate",
     "market.overview.estimatedFee": "Estimated fee",
@@ -34,6 +40,12 @@
     "market.category.startups": "Startups",
     "market.category.stocks": "Stocks",
     "market.category.viral": "Viral",
+
+    "marketCreation.label.categorySelect": "Select one or more category",
+    "marketCreation.label.description": "Provide description of the market",
+    "marketCreation.label.marketType": "Choose a market type",
+    "marketCreation.label.binary": "Binary",
+    "marketCreation.label.categorical": "Categorical",
 
     "auth.login": "Login",
 

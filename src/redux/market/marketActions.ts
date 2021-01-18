@@ -1,5 +1,5 @@
-import { getMarketById, getMarkets } from "../../services/MarketService";
-import { setMarketErrors, setMarketLoading, setMarketDetail, setMarkets } from "./market";
+import { getMarketById, getMarkets, getResolutingMarkets, MarketFilters } from "../../services/MarketService";
+import { setMarketErrors, setMarketLoading, setMarketDetail, setMarkets, setResolutingMarkets } from "./market";
 
 export function fetchMarketById(id: string) {
     return async (dispatch: Function) => {
@@ -22,14 +22,30 @@ export function fetchMarketById(id: string) {
     };
 }
 
-export function fetchMarkets() {
+export function fetchMarkets(filters: MarketFilters) {
     return async (dispatch: Function) => {
         try {
             dispatch(setMarketLoading(true));
 
-            const markets = await getMarkets();
+            const markets = await getMarkets(filters);
 
             dispatch(setMarkets(markets));
+            dispatch(setMarketLoading(false));
+        } catch (error) {
+            dispatch(setMarketLoading(false));
+            console.error('[fetchMarkets]', error);
+        }
+    }
+}
+
+export function fetchResolutingMarkets() {
+    return async (dispatch: Function) => {
+        try {
+            dispatch(setMarketLoading(true));
+
+            const markets = await getResolutingMarkets();
+
+            dispatch(setResolutingMarkets(markets));
             dispatch(setMarketLoading(false));
         } catch (error) {
             dispatch(setMarketLoading(false));

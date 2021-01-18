@@ -26,7 +26,8 @@ export default function MarketHeader({
                     <LinkButton className={s['market-header__back-button']} href="/">
                         {trans('navigation.back')}
                     </LinkButton>
-                    <Tag className={s.categoryTag} category={market.category} />
+                    {market.category.length > 0 && (<Tag className={s.categoryTag} category={market.category[0]} />)}
+
                     <h1 className={s.title}>{market.description}</h1>
 
                     <div className={s.resolutionDate}>
@@ -41,7 +42,7 @@ export default function MarketHeader({
                 <div className={classnames(s.headerItem, s.opinionCardWrapper)}>
                     <MarketOpinionCard market={market} />
                 </div>
-                <div className={s['bubble']} style={{ backgroundImage: `url(${getCategoryInfo(market.category).circleIcon})` }} />
+                <div className={s['bubble']} style={{ backgroundImage: `url(${getCategoryInfo(market.category[0]).circleIcon})` }} />
             </div>
         </header>
     );

@@ -17,15 +17,15 @@ export default function MarketInfoCard({
     market,
     className = '',
 }: Props): ReactElement {
-    const categoryInfo = getCategoryInfo(market.category);
+    const categoryInfo = market.category.length ? market.category.map(category => getCategoryInfo(category)) : [getCategoryInfo()];
 
     return (
-        <div className={classnames(s.root, className)} style={{ backgroundColor: categoryInfo.color }}>
+        <div className={classnames(s.root, className)} style={{ backgroundColor: categoryInfo[0].color }}>
             <div>
-                <span className={s.categoryTitle}>{categoryInfo.title}</span>
+                <span className={s.categoryTitle}>{categoryInfo.map(info => info.title).join(' | ')}</span>
                 <h2 className={s.title}>{market.description}</h2>
             </div>
-            <img className={s.bubble} src={categoryInfo.circleIcon} alt={market.category} />
+            <img className={s.bubble} src={categoryInfo[0].circleIcon} alt={market.category[0]} />
             <div className={s.resolutionInfo}>
                 <span>{trans('market.resolutionDate')} <strong>{formatResolutionDate(market.resolutionDate)}</strong></span>
             </div>

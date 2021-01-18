@@ -1,9 +1,45 @@
 @import "../../styles/helpers/variables";
+@import "../../styles/helpers/mixins";
 
 .root {
     padding: $mobile-container-padding;
+
+    @include for-size($default-bigger-screen-breakpoint) {
+        padding: 0;
+    }
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+}
+
+.filter {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
 }
 
 .market {
     margin-bottom: 6rem;
+
+    @include for-size($default-bigger-screen-breakpoint) {
+        width: calc(33.33% - 1.4rem);
+        margin: 0 1rem 6rem;
+
+        &:nth-child(3n + 3) {
+            margin-right: 0;
+        }
+
+        &:nth-child(3n + 4), &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+
+.markets {
+    @include for-size($default-bigger-screen-breakpoint) {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }

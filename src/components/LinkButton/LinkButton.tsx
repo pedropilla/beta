@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import classnames from 'classnames';
 
 import s from './LinkButton.module.scss';
+import { Link } from 'react-router-dom';
 
-type HTMLAHrefProps = JSX.IntrinsicElements['a'];
-
-interface ButtonProps extends HTMLAHrefProps {
-
+interface Props {
+    href: string;
+    className?: string;
 }
 
 export default function LinkButton({
     children,
+    href,
     className = '',
     ...props
-}: ButtonProps) {
+}: PropsWithChildren<Props>) {
     return (
-        <a {...props} className={classnames(s['link-button'], className)}>
+        <Link to={href} className={classnames(s['link-button'], className)}>
             {children}
-        </a>
+        </Link>
     );
 }

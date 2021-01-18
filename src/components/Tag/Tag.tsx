@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import Button from '@material-ui/core/Button';
 
 import { MarketCategory } from '../../models/Market';
 import getCategoryInfo from '../../utils/getCategoryInfo';
@@ -7,18 +8,37 @@ import getCategoryInfo from '../../utils/getCategoryInfo';
 import s from './Tag.module.scss';
 
 interface Props {
-    category: MarketCategory;
+    category?: MarketCategory | string;
     className?: string;
+    active?: boolean;
+    type?: 'label' | 'button';
+    onClick?: () => void;
 }
 
 export default function Tag({
     category,
+    onClick,
+    active = false,
+    type = 'label',
     className = '',
 }: Props) {
     const categoryInfo = getCategoryInfo(category);
 
+    const rootClassName = classnames(s.root, className, {
+        [s['root--active']]: active,
+    });
+
+    if (type === 'button') {
+        return (
+            <Button onClick={onClick} className={rootClassName}>
+                <span className={s.title}>{categoryInfo.title}</span>
+                <img src={categoryInfo.icon} alt={categoryInfo.title} className={s.icon} />
+            </Button>
+        );
+    }
+
     return (
-        <div className={classnames(s.root, className)}>
+        <div className={rootClassName}>
             <span className={s.title}>{categoryInfo.title}</span>
             <img src={categoryInfo.icon} alt={categoryInfo.title} className={s.icon} />
         </div>

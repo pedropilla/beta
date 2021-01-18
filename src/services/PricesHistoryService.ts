@@ -68,6 +68,45 @@ export async function getPricesHistoryByMarketId(marketId: string): Promise<Pric
                         "outcome": 0
                     }
                 ]
+            },
+            {
+                "pointKey": "11-01-2021/14:05",
+                "dataPoints": [
+                    {
+                        "price": "0.8",
+                        "outcome": 1
+                    },
+                    {
+                        "price": "0.2",
+                        "outcome": 0
+                    }
+                ]
+            },
+            {
+                "pointKey": "11-01-2021/14:06",
+                "dataPoints": [
+                    {
+                        "price": "0.2",
+                        "outcome": 1
+                    },
+                    {
+                        "price": "0.8",
+                        "outcome": 0
+                    }
+                ]
+            },
+            {
+                "pointKey": "11-01-2021/14:06",
+                "dataPoints": [
+                    {
+                        "price": "0.6",
+                        "outcome": 1
+                    },
+                    {
+                        "price": "0.4",
+                        "outcome": 0
+                    }
+                ]
             }
         ];
 

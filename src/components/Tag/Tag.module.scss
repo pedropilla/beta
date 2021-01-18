@@ -1,17 +1,24 @@
 .root {
-    height: 2.4rem;
     background-color: var(--c-primary-dark);
+    color: var(--c-white);
     width: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 0.8rem;
+    font-size: 1.5rem;
+    padding: 0.8rem 1.3rem;
     border-radius: 1.8rem;
+    text-transform: none;
+    line-height: normal;
+
+    &--active {
+        background-color: var(--c-primary);
+    }
 }
 
 .icon {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 2.1rem;
+    height: 2.1rem;
 }
 
 .title {

@@ -1,7 +1,18 @@
+@import "../../styles/helpers/mixins";
+@import "../../styles/helpers/variables";
+
 .homePage {
     height: 1000px;
 }
 
+.homePageBody {
+    margin: 0 auto;
+}
+
 .tabBar {
     margin-bottom: 2.8rem;
+
+    @include for-size($default-bigger-screen-breakpoint) {
+        // max-width: 16rem;
+    }
 }

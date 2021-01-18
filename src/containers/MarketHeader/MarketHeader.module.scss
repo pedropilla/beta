@@ -9,7 +9,7 @@
     position: relative;
     z-index: 1;
 
-    @include for-size(desktop-up) {
+    @include for-size($default-bigger-screen-breakpoint) {
         min-height: 28.1rem;
         margin-bottom: 7.2rem;
     }
@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
 
-    @include for-size(desktop-up) {
+    @include for-size($default-bigger-screen-breakpoint) {
         max-width: $large-container-size;
     }
 }
@@ -32,7 +32,7 @@
     line-height: 2.9rem;
     margin: 0 0 0.6rem;
 
-    @include for-size(desktop-up) {
+    @include for-size($default-bigger-screen-breakpoint) {
         font-size: 3rem;
         line-height: 3.9rem;
         margin-bottom: 2.5rem;
@@ -45,7 +45,7 @@
 }
 
 .headerItem {
-    @include for-size(desktop-up) {
+    @include for-size($default-bigger-screen-breakpoint) {
         width: 50%;
     }
 }
@@ -55,7 +55,7 @@
 }
 
 .bubble {
-    @include for-size(desktop-up) {
+    @include for-size($default-bigger-screen-breakpoint) {
         height: 47rem;
         width: 47rem;
         transform: translate(200%, -25%);
@@ -72,7 +72,7 @@
     display: none;
     width: 30%;
 
-    @include for-size(desktop-up) {
+    @include for-size($default-bigger-screen-breakpoint) {
         display: block;
     }
 }

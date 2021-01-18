@@ -62,7 +62,7 @@ export default function generateLineChart(canvas: HTMLCanvasElement): Chart | nu
 
             elements:{
                 line: {
-                    tension: 0.000001,
+                    tension: 0,
                 },
                 point: {
                     radius: 0,

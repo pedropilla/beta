@@ -30,11 +30,11 @@ interface CategoryInfo {
     cardIcon: string;
     circleIcon: string;
     category: MarketCategory;
-    title: string;
+    title?: string;
     color: string;
 }
 
-export default function getCategoryInfo(category: MarketCategory): CategoryInfo {
+export default function getCategoryInfo(category?: MarketCategory | string): CategoryInfo {
     switch (category) {
         case MarketCategory.Crypto:
             return {
@@ -111,10 +111,10 @@ export default function getCategoryInfo(category: MarketCategory): CategoryInfo 
         default:
             return {
                 circleIcon: circleStocks,
-                category,
+                category: MarketCategory.Unknown,
                 cardIcon: '',
                 icon: iconStocks,
-                title: '',
+                title: category,
                 color: '#C45DFF',
             };
     }

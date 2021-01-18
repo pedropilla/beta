@@ -1,0 +1,29 @@
+@import "../../styles/helpers/variables";
+@import "../../styles/helpers/mixins";
+
+.root {
+    padding: 0 $mobile-container-padding;
+
+    @include for-size($default-bigger-screen-breakpoint) {
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.market {
+    margin-bottom: 2rem;
+
+    @include for-size($default-bigger-screen-breakpoint) {
+        width: calc(33.33% - 1.4rem);
+        margin: 0 1rem 2rem;
+
+        &:nth-child(3n + 3) {
+            margin-right: 0;
+        }
+
+        &:nth-child(3n + 4), &:first-child {
+            margin-left: 0;
+        }
+    }
+}

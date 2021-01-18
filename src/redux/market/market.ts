@@ -3,6 +3,7 @@ import { MarketViewModel } from '../../models/Market';
 
 export type MarketState = Readonly<{
     markets: MarketViewModel[];
+    resolutingMarkets: MarketViewModel[];
     marketDetail?: MarketViewModel;
     marketError?: string[];
     marketLoading: boolean;
@@ -11,6 +12,7 @@ export type MarketState = Readonly<{
 const initialState: MarketState = {
     marketLoading: false,
     markets: [],
+    resolutingMarkets: [],
 };
 
 const marketsSlice = createSlice({
@@ -35,6 +37,12 @@ const marketsSlice = createSlice({
                 markets: action.payload,
             });
         },
+        setResolutingMarkets(state: MarketState, action: PayloadAction<MarketViewModel[]>): MarketState {
+            return ({
+                ...state,
+                resolutingMarkets: action.payload,
+            });
+        },
         setMarketDetail(state: MarketState, action: PayloadAction<MarketViewModel | undefined>): MarketState {
             return ({
                 ...state,
@@ -48,6 +56,7 @@ export const {
     setMarketErrors,
     setMarketLoading,
     setMarkets,
+    setResolutingMarkets,
     setMarketDetail,
 } = marketsSlice.actions;
 
