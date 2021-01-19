@@ -12,6 +12,7 @@ import { fetchMarkets } from '../../redux/market/marketActions';
 export default function MarketOverviewConnector(): ReactElement {
     const dispatch = useDispatch();
     const markets = useSelector((store: Reducers) => store.market.markets);
+    const loading = useSelector((store: Reducers) => store.market.marketLoading);
     const history = useHistory();
     const location = useLocation();
     const [filters, setFilters] = useState<MarketFilters>({
@@ -46,6 +47,7 @@ export default function MarketOverviewConnector(): ReactElement {
 
     return (
         <MarketOverview
+            loading={loading}
             markets={markets}
             activeFilters={filters}
             onFilterChange={handleFilterChange}

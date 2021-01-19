@@ -8,6 +8,7 @@
     color: var(--c-text);
     position: relative;
     z-index: 1;
+    overflow: hidden;
 
     @include for-size($default-bigger-screen-breakpoint) {
         min-height: 17.5625rem;

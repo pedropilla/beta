@@ -18,7 +18,7 @@ import HomeHeaderConnector from '../../connectors/HomeHeaderConnector';
 
 
 export default function HomePage() {
-    const isDesktop = useMediaQuery('(min-width: 1448px)');
+    const isLargeScreen = useMediaQuery('(min-width: 1024px)');
     const history = useHistory();
     const location = useLocation();
 
@@ -28,28 +28,25 @@ export default function HomePage() {
 
     return (
         <Page className={s.homePage} bodyClassName={s.homePageBody} size="large" hasNavigation>
-            <Helmet>
-                <title>{trans('page.home.title')}</title>
-            </Helmet>
             <BackgroundWave />
             <HomeHeaderConnector />
             <TabBar
                 className={s.tabBar}
                 activeId={location.pathname}
                 onTabClick={onTabClick}
-                variant={isDesktop ? 'standard' : 'fullWidth'}
+                variant={isLargeScreen ? 'standard' : 'fullWidth'}
                 items={[{
                     id: routePaths.root(),
                     label: trans('pages.marketOverview'),
                 }, {
-                    id: routePaths.resolute(),
+                    id: routePaths.resoluted(),
                     label: trans('pages.resoluteOverview'),
                 }]}
             />
             <MarketCreationDialogConnector />
             <Switch>
                 <Route exact path={routePaths.root()} component={MarketsOverviewPage} />
-                <Route exact path={routePaths.resolute()} component={ResolutionPage} />
+                <Route exact path={routePaths.resoluted()} component={ResolutionPage} />
             </Switch>
         </Page>
     );

@@ -6,6 +6,7 @@
 
     &__body {
         max-width: $container-size;
+        margin: 0 auto;
 
         &--large {
             max-width: $large-container-size;

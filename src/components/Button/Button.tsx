@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { FormEvent, ReactNode } from 'react';
 import { default as MuiButton } from '@material-ui/core/Button';
 
 import s from './Button.module.scss';
@@ -6,7 +6,7 @@ import s from './Button.module.scss';
 interface ButtonProps {
     children: ReactNode | string;
     className?: string;
-    onClick?: () => void;
+    onClick?: (event: FormEvent<HTMLButtonElement>) => void;
     variant?: "text" | "outlined" | "contained";
 };
 

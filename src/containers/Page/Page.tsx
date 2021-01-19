@@ -1,21 +1,22 @@
 import React, { PropsWithChildren, ReactElement } from "react";
 import classnames from 'classnames';
 
-import Menu from "../Menu";
+import Footer from "../Footer";
+import MenuConnector from "../../connectors/MenuConnector";
 
 import styles from './Page.module.scss';
-import Footer from "../Footer";
-
 interface Props {
     className?: string;
     bodyClassName?: string;
     hasNavigation?: boolean;
+    hasFooter?: boolean;
     size?: 'large' | 'medium' | 'unrestricted';
 }
 
 export default function Page({
     children,
-    hasNavigation = false,
+    hasNavigation = true,
+    hasFooter = true,
     size = 'medium',
     className = '',
     bodyClassName = '',
@@ -27,11 +28,12 @@ export default function Page({
 
     return (
         <div className={`${styles.page} ${className}`}>
-            {hasNavigation && <Menu />}
+            {/* Normally don't put connectors in containers.. */}
+            {hasNavigation && <MenuConnector />}
             <main className={pageBodyClassName}>
                 {children}
             </main>
-            <Footer />
+            {hasFooter && <Footer />}
         </div>
     );
 }

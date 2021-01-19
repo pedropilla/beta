@@ -11,8 +11,4 @@
 
 .tabBar {
     margin-bottom: 1.75rem;
-
-    @include for-size($default-bigger-screen-breakpoint) {
-        // max-width: 16rem;
-    }
 }

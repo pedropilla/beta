@@ -1,6 +1,7 @@
 import React, { ReactElement, useMemo } from 'react';
-import Tag from '../../components/Tag';
+import Skeleton from '@material-ui/lab/Skeleton';
 
+import Tag from '../../components/Tag';
 import MarketCard from '../../compositions/MarketCard';
 import { MarketCategory, MarketViewModel } from '../../models/Market';
 import { routePaths } from '../../routes';
@@ -10,6 +11,7 @@ import s from './MarketOverview.module.scss';
 
 interface Props {
     markets: MarketViewModel[];
+    loading: boolean;
     onFilterChange: (filters: MarketFilters) => void;
     activeFilters: MarketFilters;
 }
@@ -18,6 +20,7 @@ export default function MarketOverview({
     markets,
     onFilterChange,
     activeFilters,
+    loading,
 }: Props): ReactElement {
     const marketCategories = useMemo(() => Object.values(MarketCategory).filter(category => category !== MarketCategory.Unknown), []);
 
@@ -35,6 +38,8 @@ export default function MarketOverview({
             categories: activeCategories,
         });
     }
+
+    console.log('[] loading -> ', loading);
 
     return (
         <div className={s.root}>
@@ -59,6 +64,15 @@ export default function MarketOverview({
                         market={market}
                     />
                 ))}
+
+                {loading && (
+                    new Array(18).fill('').map(() => (
+                        <div className={s.market}>
+                            <Skeleton variant="rect" height={200} className={s.skeleton} />
+                            <Skeleton variant="rect" height={100} className={s.skeleton} />
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     );

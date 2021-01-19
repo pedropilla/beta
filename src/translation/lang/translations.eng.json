@@ -1,4 +1,5 @@
 {
+    "global.appName": "Flux",
     "global.yes": "Yes",
     "global.no": "No",
     "global.none": "None",
@@ -11,11 +12,13 @@
     "global.actions.createMarket": "Create market",
 
     "pages.marketOverview": "Trade",
-    "pages.resoluteOverview": "Resolute",
+    "pages.resoluteOverview": "Resoluted",
 
+    "home.title.head": ":appName - Markets",
     "home.title.welcome": "Welcome :username",
     "home.title.latestTrends": "These are the latest trends",
 
+    "market.title.head": ":appName - :description",
     "market.extraInfo": "Extra info",
     "market.resolutionDate": "Resolution date",
     "market.action.confirmSwap": "Confirm swap",
@@ -55,9 +58,19 @@
     "marketCreation.label.outcome": "Outcome :number",
     "marketCreation.label.addMoreOutcomes": "Add more outcomes",
 
+    "marketResolution.title.head": ":appName - Resolute",
+
+    "orderHistory.title": "Order history",
+    "orderHistory.table.share": "Share",
+    "orderHistory.table.pricePerShare": "Price per share",
+    "orderHistory.table.orderValue": "Order value",
+
+    "feesEarned.title": "Fees earned",
+    "feesEarned.table.market": "Market",
+    "feesEarned.table.balance": "Pool token balance",
+    "feesEarned.table.feesEarned": "Fees earned",
+
     "auth.login": "Login",
 
-    "navigation.back": "Back",
-
-    "page.home.title": "Flux"
+    "navigation.back": "Back"
 }

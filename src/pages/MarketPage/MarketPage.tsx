@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { DiscussionEmbed } from 'disqus-react';
 
@@ -16,6 +16,8 @@ import TabbedView from '../../containers/TabbedViews';
 import LiquidityProviderConnector from '../../connectors/LiquidityProviderConnector';
 
 import s from './MarketPage.module.scss';
+import { Helmet } from 'react-helmet';
+import { Reducers } from '../../redux/reducers';
 
 interface RouterParams {
     marketId: string;
@@ -23,6 +25,7 @@ interface RouterParams {
 
 export default function MarketPage() {
     const dispatch = useDispatch();
+    const market = useSelector((store: Reducers) => store.market.marketDetail);
     const { marketId } = useParams<RouterParams>();
 
     useEffect(() => {
@@ -32,6 +35,14 @@ export default function MarketPage() {
 
     return (
         <Page hasNavigation size="unrestricted" className={s.root}>
+            <Helmet>
+                <title>
+                    {trans('market.title.head', {
+                        appName: trans('global.appName'),
+                        description: market?.description || '',
+                    })}
+                </title>
+            </Helmet>
             <MarketHeaderConnector />
             <div className={s.details}>
                 <div className={s.infoWrapper}>

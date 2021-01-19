@@ -16,6 +16,7 @@ export interface MarketViewModel {
     id: string;
     description: string;
     resolutionDate: Date;
+    resoluted: boolean;
     outcomes: PoolBalanceViewModel[];
     volume: string;
     category: (MarketCategory | string)[];

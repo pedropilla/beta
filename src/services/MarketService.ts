@@ -14,6 +14,7 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
     try {
         const market: MarketViewModel = {
             id: marketId,
+            resoluted: true,
             description: "Will SpaceX launch a second manned mission in 2020?",
             resolutionDate: new Date(),
             extraInfo: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -51,6 +52,7 @@ export async function getMarkets(filters: MarketFilters): Promise<MarketViewMode
         const categories = Object.values(MarketCategory);
         const market: MarketViewModel = {
             id: '6',
+            resoluted: false,
             description: "Will SpaceX launch a second manned mission in 2020?",
             resolutionDate: new Date(),
             extraInfo: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -78,7 +80,11 @@ export async function getMarkets(filters: MarketFilters): Promise<MarketViewMode
             id: index.toString(),
         }));
 
-        return x;
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(x);
+            }, 5000);
+        });
     } catch (error) {
         console.error('[getMarketById]', error);
         return [];
@@ -89,6 +95,7 @@ export async function getResolutingMarkets(): Promise<MarketViewModel[]> {
     try {
         const categories = Object.values(MarketCategory);
         const market: MarketViewModel = {
+            resoluted: true,
             id: '6',
             description: "Will BTC hit $1000000 by the end of 2020?",
             resolutionDate: new Date(),
