@@ -16,6 +16,7 @@ export default function MarketResolutionOverview({
         <div className={s.root}>
             {markets.map(market => (
                 <MarketResolutionCard
+                    key={market.id}
                     href={routePaths.marketDetail(market.id)}
                     market={market}
                     className={s.market}

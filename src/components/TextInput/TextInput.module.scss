@@ -1,0 +1,14 @@
+.root {
+    width: 100%;
+    background-color: var(--c-primary-dark);
+
+    textarea, input {
+        color: var(--c-text);
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+
+    fieldset {
+        border-color: var(--c-text);
+    }
+}

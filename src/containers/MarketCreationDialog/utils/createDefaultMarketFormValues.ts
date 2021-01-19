@@ -5,5 +5,8 @@ export default function createDefaultMarketFormValues(): MarketFormValues {
     return {
         resolutionDate: addDays(new Date(), 1),
         categories: [],
+        isCategoricalMarket: false,
+        outcomes: [''],
+        description: '',
     }
 }

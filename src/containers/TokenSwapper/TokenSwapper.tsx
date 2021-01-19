@@ -93,7 +93,7 @@ export default function TokenSwapper({
                 <SwapOverview />
             </div>
 
-            <Button type="submit" className={s['token-swapper__confirm']}>
+            <Button className={s['token-swapper__confirm']}>
                 {trans('market.action.confirmSwap')}
             </Button>
         </form>

@@ -2,8 +2,11 @@ import { format } from 'date-fns';
 import { MarketCategory, MarketViewModel } from '../models/Market';
 
 export interface MarketFormValues {
+    isCategoricalMarket: boolean;
     categories: MarketCategory[];
     resolutionDate: Date;
+    description: string;
+    outcomes: string[];
 }
 
 

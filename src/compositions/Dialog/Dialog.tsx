@@ -11,14 +11,20 @@ import trans from '../../translation/trans';
 
 interface Props {
     title: string;
+    open: boolean;
+    onRequestClose: () => void;
+    onSubmitClick: () => void;
 }
 
 export default function Dialog({
     title,
     children,
+    open,
+    onRequestClose,
+    onSubmitClick,
 }: PropsWithChildren<Props>) {
     return (
-        <MuiDialog open classes={{ paper: s.paper }}>
+        <MuiDialog open={open} classes={{ paper: s.paper }}>
             <DialogTitle>
                 {title}
             </DialogTitle>
@@ -26,10 +32,10 @@ export default function Dialog({
                 {children}
             </DialogContent>
             <DialogActions>
-                <Button className={s.cancelButton}>
+                <Button className={s.cancelButton} onClick={onRequestClose}>
                     {trans('global.action.cancel')}
                 </Button>
-                <Button type="submit" className={s.confirmButton}>
+                <Button className={s.confirmButton} onClick={onSubmitClick}>
                     {trans('global.action.submit')}
                 </Button>
             </DialogActions>

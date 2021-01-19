@@ -14,6 +14,7 @@ import MarketsOverviewPage from './sub-pages/MarketsOverviewPage';
 import MarketCreationDialogConnector from '../../connectors/MarketCreationDialogConnector';
 
 import s from './HomePage.module.scss';
+import HomeHeaderConnector from '../../connectors/HomeHeaderConnector';
 
 
 export default function HomePage() {
@@ -31,6 +32,7 @@ export default function HomePage() {
                 <title>{trans('page.home.title')}</title>
             </Helmet>
             <BackgroundWave />
+            <HomeHeaderConnector />
             <TabBar
                 className={s.tabBar}
                 activeId={location.pathname}

@@ -1,19 +1,33 @@
-import React, { FormEvent, ReactElement, useMemo, useState } from 'react';
+import React, { ReactElement, useMemo, useRef, useState } from 'react';
 import DateTimePicker from '../../components/DateTimePicker';
+import Label from '../../components/Label';
 import OptionSwitch from '../../components/OptionSwitch';
 import Tag from '../../components/Tag';
-import TextArea from '../../components/TextArea';
+import TextInput from '../../components/TextInput';
 import Dialog from '../../compositions/Dialog';
 import { MarketCategory } from '../../models/Market';
-import { MarketFormValues } from '../../services/MarketService';
 import trans from '../../translation/trans';
+import AddableInputs from '../AddableInputs';
 
 import s from './MarketCreationDialog.module.scss';
 import createDefaultMarketFormValues from './utils/createDefaultMarketFormValues';
 
-export default function MarketCreationDialog(): ReactElement {
+interface Props {
+    open: boolean;
+    onRequestClose: () => void;
+}
+
+export default function MarketCreationDialog({
+    open,
+    onRequestClose,
+}: Props): ReactElement {
+    const formRef = useRef<HTMLFormElement>(null);
     const [formValues, setFormValues] = useState(createDefaultMarketFormValues());
     const marketCategories = useMemo(() => Object.values(MarketCategory).filter(category => category !== MarketCategory.Unknown), []);
+
+    function handleFormSubmit() {
+        console.log('Submit!');
+    }
 
     function handleCategoryClick(category: MarketCategory) {
         let activeCategories = formValues.categories;
@@ -39,9 +53,30 @@ export default function MarketCreationDialog(): ReactElement {
         });
     }
 
+    function handleMarketTypeChange(checked: boolean) {
+        setFormValues({
+            ...formValues,
+            isCategoricalMarket: checked,
+        });
+    }
+
+    function handleOutcomesChange(outcomes: string[]) {
+        setFormValues({
+            ...formValues,
+            outcomes,
+        });
+    }
+
+    function handleDescriptionChange(description: string) {
+        setFormValues({
+            ...formValues,
+            description,
+        });
+    }
+
     return (
-        <Dialog title="">
-            <div className={s.filters}>
+        <Dialog open={open} title="" onRequestClose={onRequestClose} onSubmitClick={handleFormSubmit}>
+            <form className={s.filters} ref={formRef}>
                 <div className={s.inputsWrapper}>
                     <label className={s.label}>
                         {trans('marketCreation.label.categorySelect')}
@@ -63,7 +98,7 @@ export default function MarketCreationDialog(): ReactElement {
                     <label className={s.label}>
                         {trans('marketCreation.label.description')}
                     </label>
-                    <TextArea />
+                    <TextInput required multiline onChange={handleDescriptionChange} value={formValues.description} />
                 </div>
                 <div className={s.inputsWrapper}>
                     <label className={s.label}>
@@ -72,8 +107,17 @@ export default function MarketCreationDialog(): ReactElement {
                     <OptionSwitch
                         labelA={trans('marketCreation.label.binary')}
                         labelB={trans('marketCreation.label.categorical')}
+                        onChange={handleMarketTypeChange}
+                        value={formValues.isCategoricalMarket}
                     />
                 </div>
+                {formValues.isCategoricalMarket && (
+                    <div className={s.inputsWrapper}>
+                        <Label text={trans('marketCreation.label.outcomes')} />
+                        <AddableInputs onChange={handleOutcomesChange} values={formValues.outcomes} />
+                    </div>
+                )}
+
                 <div className={s.inputsWrapper}>
                     <label className={s.label}>
                         {trans('marketCreation.label.resolutionDate')}
@@ -84,7 +128,7 @@ export default function MarketCreationDialog(): ReactElement {
                         onChange={handleResolutionDateChange}
                     />
                 </div>
-            </div>
+            </form>
         </Dialog>
     );
 }

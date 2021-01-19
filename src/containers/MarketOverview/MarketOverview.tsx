@@ -38,7 +38,6 @@ export default function MarketOverview({
 
     return (
         <div className={s.root}>
-            When loading show skeleton
             <div className={s.filters}>
                 {marketCategories.map((category) => (
                     <Tag

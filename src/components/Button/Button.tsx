@@ -7,17 +7,15 @@ interface ButtonProps {
     children: ReactNode | string;
     className?: string;
     onClick?: () => void;
-    type?: string;
     variant?: "text" | "outlined" | "contained";
 };
 
 export default function Button({
     className = '',
     children,
-    type,
     ...props
 }: ButtonProps) {
     return (
-        <MuiButton {...props} className={`${s.button} ${className}`}>{children}</MuiButton>
+        <MuiButton  {...props} className={`${s.button} ${className}`}>{children}</MuiButton>
     );
 }

@@ -26,7 +26,7 @@ export default function LiquidityProvider({
                 tokens={[token]}
                 className={s.tokenSelect}
             />
-            <Button type="submit" className={s.confirm}>
+            <Button className={s.confirm}>
                 {trans('market.action.confirmLiquidity')}
             </Button>
         </div>

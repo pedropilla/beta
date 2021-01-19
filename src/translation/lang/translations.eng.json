@@ -8,9 +8,13 @@
 
     "global.action.cancel": "Cancel",
     "global.action.submit": "Submit",
+    "global.actions.createMarket": "Create market",
 
     "pages.marketOverview": "Trade",
     "pages.resoluteOverview": "Resolute",
+
+    "home.title.welcome": "Welcome :username",
+    "home.title.latestTrends": "These are the latest trends",
 
     "market.extraInfo": "Extra info",
     "market.resolutionDate": "Resolution date",
@@ -46,6 +50,10 @@
     "marketCreation.label.marketType": "Choose a market type",
     "marketCreation.label.binary": "Binary",
     "marketCreation.label.categorical": "Categorical",
+    "marketCreation.label.resolutionDate": "When does this market end?",
+    "marketCreation.label.outcomes": "Outcomes",
+    "marketCreation.label.outcome": "Outcome :number",
+    "marketCreation.label.addMoreOutcomes": "Add more outcomes",
 
     "auth.login": "Login",
 
