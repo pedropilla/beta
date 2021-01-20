@@ -19,7 +19,7 @@ export default function ProfilePage(): ReactElement {
     }, [dispatch, account]);
 
     return (
-        <Page hasFooter={false} className={s.root} size="large">
+        <Page hasFooter={false} className={s.root} bodyClassName={s.pageBody} size="large">
             <FeesEarnedOverviewConnector className={s.feesEarned} />
         </Page>
     );

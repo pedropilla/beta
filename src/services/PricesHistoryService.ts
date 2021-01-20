@@ -1,4 +1,5 @@
 import { PriceHistoryData } from '../models/PriceHistoryData';
+import { sleep } from '../utils/sleep';
 
 
 export async function getPricesHistoryByMarketId(marketId: string): Promise<PriceHistoryData[]> {
@@ -109,6 +110,8 @@ export async function getPricesHistoryByMarketId(marketId: string): Promise<Pric
                 ]
             }
         ];
+
+        await sleep(2000);
 
         return history;
     } catch (error) {

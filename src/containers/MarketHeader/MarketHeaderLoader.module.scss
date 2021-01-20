@@ -1,0 +1,18 @@
+@import "../../styles/helpers/variables";
+
+.root {
+    min-height: 16.125rem;
+    background-color: var(--c-secondary);
+    margin-bottom: 4rem;
+}
+
+.wrapper {
+    display: flex;
+    max-width: $large-container-size;
+    margin: 0 auto;
+}
+
+.skeleton {
+    background-color: rgba(0, 0, 0, 0.31);
+    width: 100%;
+}

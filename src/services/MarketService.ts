@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { MarketCategory, MarketViewModel } from '../models/Market';
+import { sleep } from '../utils/sleep';
 
 export interface MarketFormValues {
     isCategoricalMarket: boolean;
@@ -35,6 +36,8 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
                 }
             ],
         };
+
+        await sleep(2000);
 
         return market;
     } catch (error) {
@@ -130,6 +133,8 @@ export async function getResolutingMarkets(): Promise<MarketViewModel[]> {
         return [];
     }
 }
+
+
 
 export function formatResolutionDate(resolutionDate: Date): string {
     return format(resolutionDate, 'MMMM d, yyyy HH:mm');

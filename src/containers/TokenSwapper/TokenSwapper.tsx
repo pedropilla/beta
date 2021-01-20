@@ -58,7 +58,7 @@ export default function TokenSwapper({
             <div className={s['token-swapper__token']}>
                 <div className={s['token-swapper__token-header']}>
                     <span>{trans('market.label.youPay')}</span>
-                    <span>{trans('global.balance', {}, true)}: {selectedInputToken.balance}</span>
+                    <span>{trans('global.balance', {}, true)}: {selectedInputToken.balanceFormatted}</span>
                 </div>
                 <TokenSelect
                     onTokenSwitch={handleInputTokenSwitch}

@@ -66,7 +66,7 @@ export default function MarketOverview({
                 ))}
 
                 {loading && (
-                    new Array(18).fill('').map(() => (
+                    new Array(9).fill('').map(() => (
                         <div className={s.market}>
                             <Skeleton variant="rect" height={288} className={s.skeleton} />
                             <Skeleton variant="rect" height={100} className={s.skeleton} />

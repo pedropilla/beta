@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import MarketHeader from '../../containers/MarketHeader';
+import MarketHeaderLoader from '../../containers/MarketHeader/MarketHeaderLoader';
 import { Reducers } from '../../redux/reducers';
 
 interface Props {
@@ -13,7 +14,7 @@ export default function MarketHeaderConnector({
     const market = useSelector((store: Reducers) => store.market.marketDetail);
 
     if (!market) {
-        return <div />;
+        return <MarketHeaderLoader />;
     }
 
     return (
