@@ -2,12 +2,17 @@ import React, { ReactElement } from 'react';
 import TextField from '@material-ui/core/TextField';
 
 import s from './TextInput.module.scss';
+import { InputProps } from '@material-ui/core';
 
 interface Props {
     multiline?: boolean;
     onChange?: (value: string) => void;
     value?: string;
     required?: boolean;
+    type?: string;
+    helperText?: string;
+    error?: boolean;
+    InputProps?: Partial<InputProps>
 }
 
 export default function TextInput({
@@ -15,9 +20,12 @@ export default function TextInput({
     value,
     required,
     onChange = () => {},
+    type = 'text',
+    ...props
 }: Props): ReactElement {
     return (
         <TextField
+            {...props}
             id="outlined-multiline-flexible"
             multiline={multiline}
             variant="outlined"
@@ -25,6 +33,7 @@ export default function TextInput({
             value={value}
             onChange={(event) => onChange(event.target.value)}
             required={required}
+            type={type}
         />
     );
 }

@@ -38,9 +38,11 @@ export default function HomePage() {
                 items={[{
                     id: routePaths.root(),
                     label: trans('pages.marketOverview'),
+                    show: true,
                 }, {
                     id: routePaths.resoluted(),
                     label: trans('pages.resoluteOverview'),
+                    show: true,
                 }]}
             />
             <MarketCreationDialogConnector />

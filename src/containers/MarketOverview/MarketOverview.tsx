@@ -39,8 +39,6 @@ export default function MarketOverview({
         });
     }
 
-    console.log('[] loading -> ', loading);
-
     return (
         <div className={s.root}>
             <div className={s.filters}>
@@ -66,8 +64,8 @@ export default function MarketOverview({
                 ))}
 
                 {loading && (
-                    new Array(9).fill('').map(() => (
-                        <div className={s.market}>
+                    new Array(9).fill('').map((_, index) => (
+                        <div className={s.market} key={index}>
                             <Skeleton variant="rect" height={288} className={s.skeleton} />
                             <Skeleton variant="rect" height={100} className={s.skeleton} />
                         </div>

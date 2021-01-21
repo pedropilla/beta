@@ -1,0 +1,22 @@
+.inputWrapper {
+    margin-bottom: 1rem;
+}
+
+.confirmButton {
+    height: 3.75rem;
+    width: 100%;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: var(--c-confirm-button);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+.adornement {
+    color: var(--c-text);
+}
+
+.tokenTitles {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+}

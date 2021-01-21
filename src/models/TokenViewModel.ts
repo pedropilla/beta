@@ -3,4 +3,5 @@ export interface TokenViewModel {
     balance: string;
     balanceFormatted: string;
     price: number;
+    tokenSymbol: string;
 }

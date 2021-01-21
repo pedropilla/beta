@@ -19,6 +19,8 @@ import s from './MarketPage.module.scss';
 import { Helmet } from 'react-helmet';
 import { Reducers } from '../../redux/reducers';
 import { loadTokens } from '../../redux/tokens/tokenActions';
+import ClaimFeesConnector from '../../connectors/ClaimFeesConnector';
+import SeedPoolConnector from '../../connectors/SeedPoolConnector';
 
 interface RouterParams {
     marketId: string;
@@ -56,11 +58,23 @@ export default function MarketPage() {
                         items={[{
                             element: <TokenSwapperConnector key="tokenswapper" />,
                             label: trans('market.label.swap'),
+                            show: market?.finalized === true && market?.resoluted === false,
                             id: '0',
                         }, {
                             element: <LiquidityProviderConnector key="liquidity" />,
                             label: trans('market.label.liquidity'),
+                            show: market?.finalized === true && market?.resoluted === false,
                             id: '1',
+                        }, {
+                            element: <ClaimFeesConnector key="claimfees" />,
+                            label: trans('market.label.claimFees'),
+                            show: market?.resoluted === true,
+                            id: '2',
+                        }, {
+                            element: <SeedPoolConnector key="seedpool" />,
+                            label: trans('market.label.seedPool'),
+                            show: market?.finalized === false && market.resoluted === false,
+                            id: '3',
                         }]}
                     />
                 </ActionsCard>

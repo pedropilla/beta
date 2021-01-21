@@ -1,7 +1,8 @@
 import { format } from 'date-fns';
+import { FetchResult, FetchResultType } from '../models/FetchResult';
 import { MarketCategory, MarketViewModel } from '../models/Market';
 import { sleep } from '../utils/sleep';
-
+import createProtocolContract from './contracts/ProtocolContract';
 export interface MarketFormValues {
     isCategoricalMarket: boolean;
     categories: MarketCategory[];
@@ -10,17 +11,40 @@ export interface MarketFormValues {
     outcomes: string[];
 }
 
+export async function createMarket(values: MarketFormValues): Promise<FetchResult<any, string>> {
+    try {
+        const protocol = await createProtocolContract();
+        const outcomes = values.outcomes.length > 2 ? values.outcomes : ['YES', 'NO'];
+
+        protocol.createMarket(values.description, outcomes, values.resolutionDate);
+
+        return {
+            type: FetchResultType.Success,
+            data: {},
+            status: 200,
+        }
+    } catch (error) {
+        console.error('[createMarket]', error);
+        return {
+            type: FetchResultType.Error,
+            error,
+            status: 500,
+        }
+    }
+}
 
 export async function getMarketById(marketId: string): Promise<MarketViewModel | null> {
     try {
         const market: MarketViewModel = {
             id: marketId,
-            resoluted: true,
+            finalized: true,
+            resoluted: false,
             description: "Will SpaceX launch a second manned mission in 2020?",
             resolutionDate: new Date(),
             extraInfo: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             volume: '100000000',
             category: ['StakeGG'],
+            owner: 'franklinwaller.testnet',
             outcomes: [
                 {
                     outcomeId: 0,
@@ -55,6 +79,8 @@ export async function getMarkets(filters: MarketFilters): Promise<MarketViewMode
         const categories = Object.values(MarketCategory);
         const market: MarketViewModel = {
             id: '6',
+            finalized: false,
+            owner: 'godaso.dsjai',
             resoluted: false,
             description: "Will SpaceX launch a second manned mission in 2020?",
             resolutionDate: new Date(),
@@ -83,11 +109,9 @@ export async function getMarkets(filters: MarketFilters): Promise<MarketViewMode
             id: index.toString(),
         }));
 
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(x);
-            }, 5000);
-        });
+        await sleep(2000);
+
+        return x;
     } catch (error) {
         console.error('[getMarketById]', error);
         return [];
@@ -98,7 +122,9 @@ export async function getResolutingMarkets(): Promise<MarketViewModel[]> {
     try {
         const categories = Object.values(MarketCategory);
         const market: MarketViewModel = {
-            resoluted: true,
+            resoluted: false,
+            finalized: true,
+            owner: 'sdahuoasd',
             id: '6',
             description: "Will BTC hit $1000000 by the end of 2020?",
             resolutionDate: new Date(),

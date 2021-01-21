@@ -8,6 +8,7 @@ interface ButtonProps {
     className?: string;
     onClick?: (event: FormEvent<HTMLButtonElement>) => void;
     variant?: "text" | "outlined" | "contained";
+    disabled?: boolean;
 };
 
 export default function Button({
@@ -16,6 +17,6 @@ export default function Button({
     ...props
 }: ButtonProps) {
     return (
-        <MuiButton  {...props} className={`${s.button} ${className}`}>{children}</MuiButton>
+        <MuiButton {...props} className={`${s.button} ${className}`}>{children}</MuiButton>
     );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 
 import TabBar, { TabBarItem } from '../TabBar/TabBar';
@@ -26,6 +26,14 @@ export default function TabbedView({
         setActiveId(index);
     }
 
+    useEffect(() => {
+        const item = items.find(item => item.show);
+
+        if (item) {
+            setActiveId(parseInt(item.id, 10));
+        }
+    }, [items]);
+
     return (
         <div>
             <TabBar
@@ -36,7 +44,7 @@ export default function TabbedView({
                 className={s.tabs}
             />
             <SwipeableViews index={activeId} onChangeIndex={handleIndexChange}>
-                {items.map(item => item.element)}
+                {items.filter(item => item.show).map(item => item.element)}
             </SwipeableViews>
         </div>
     );

@@ -7,6 +7,8 @@ import { getAccountInfo } from './AccountService';
 
 const MAIN_TOKEN = 'near';
 
+// ft.flux-dev
+// amm.flux-dev
 export async function getCurrentMainTokenPrice(currency = 'usd'): Promise<FetchResult<number, string>> {
     try {
         const response = await fetch(`${COINGECKO_API_URL}/coins/${MAIN_TOKEN}?localization=false`);
@@ -27,6 +29,7 @@ export async function getCurrentMainTokenPrice(currency = 'usd'): Promise<FetchR
         }
     }
 }
+
 
 export function formatMainToken(balance: string, digits: number = 3) {
     return utils.format.formatNearAmount(balance, digits);
@@ -53,6 +56,7 @@ export async function getMainToken(): Promise<FetchResult<TokenViewModel, string
                 price: priceDataResponse.data,
                 tokenName: MAIN_TOKEN.toUpperCase(),
                 balanceFormatted: formatMainToken(accountBalance),
+                tokenSymbol: 'Ⓝ',
             },
         };
     } catch (error) {

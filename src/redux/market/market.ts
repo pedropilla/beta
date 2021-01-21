@@ -7,10 +7,12 @@ export type MarketState = Readonly<{
     marketDetail?: MarketViewModel;
     marketError?: string[];
     marketLoading: boolean;
+    editLoading: boolean,
 }>;
 
 const initialState: MarketState = {
     marketLoading: false,
+    editLoading: false,
     markets: [],
     resolutingMarkets: [],
 };
@@ -29,6 +31,12 @@ const marketsSlice = createSlice({
             return ({
                 ...state,
                 marketLoading: action.payload,
+            });
+        },
+        setMarketEditLoading(state: MarketState, action: PayloadAction<boolean>): MarketState {
+            return ({
+                ...state,
+                editLoading: action.payload,
             });
         },
         setMarkets(state: MarketState, action: PayloadAction<MarketViewModel[]>): MarketState {
@@ -58,6 +66,7 @@ export const {
     setMarkets,
     setResolutingMarkets,
     setMarketDetail,
+    setMarketEditLoading,
 } = marketsSlice.actions;
 
 export default marketsSlice.reducer;

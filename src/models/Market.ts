@@ -14,6 +14,8 @@ export enum MarketCategory {
 
 export interface MarketViewModel {
     id: string;
+    finalized: boolean;
+    owner: string;
     description: string;
     resolutionDate: Date;
     resoluted: boolean;

@@ -27,18 +27,21 @@ export default function TokenSwapperConnector({
             price: 2.38,
             tokenName: 'KANYE WEST',
             balanceFormatted: '4.50',
+            tokenSymbol: '',
         },
         {
             balance: '7.92',
             price: 2.38,
             balanceFormatted: '4.50',
-            tokenName: 'NO'
+            tokenName: 'NO',
+            tokenSymbol: '',
         },
         {
             balance: '1',
             price: 2.38,
             balanceFormatted: '4.50',
-            tokenName: 'MAYBE'
+            tokenName: 'MAYBE',
+            tokenSymbol: '',
         }
     ];
 

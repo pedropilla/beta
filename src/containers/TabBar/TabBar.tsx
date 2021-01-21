@@ -7,6 +7,7 @@ import s from './TabBar.module.scss';
 export interface TabBarItem {
     id: string;
     label: string;
+    show: boolean;
 }
 
 interface Props {
@@ -31,7 +32,7 @@ export default function TabBar({
             variant={variant}
             value={activeId}
         >
-            {items.map(tab => (
+            {items.filter(tab => tab.show).map(tab => (
                 <Tab
                     key={tab.id}
                     onClick={() => onTabClick(tab)}

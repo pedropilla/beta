@@ -1,4 +1,5 @@
 import React, { ReactElement, useMemo, useRef, useState } from 'react';
+
 import DateTimePicker from '../../components/DateTimePicker';
 import Label from '../../components/Label';
 import OptionSwitch from '../../components/OptionSwitch';
@@ -6,27 +7,30 @@ import Tag from '../../components/Tag';
 import TextInput from '../../components/TextInput';
 import Dialog from '../../compositions/Dialog';
 import { MarketCategory } from '../../models/Market';
+import { MarketFormValues } from '../../services/MarketService';
 import trans from '../../translation/trans';
 import AddableInputs from '../AddableInputs';
+import createDefaultMarketFormValues from './utils/createDefaultMarketFormValues';
 
 import s from './MarketCreationDialog.module.scss';
-import createDefaultMarketFormValues from './utils/createDefaultMarketFormValues';
 
 interface Props {
     open: boolean;
     onRequestClose: () => void;
+    onSubmit: (values: MarketFormValues) => void;
 }
 
 export default function MarketCreationDialog({
     open,
     onRequestClose,
+    onSubmit,
 }: Props): ReactElement {
     const formRef = useRef<HTMLFormElement>(null);
     const [formValues, setFormValues] = useState(createDefaultMarketFormValues());
     const marketCategories = useMemo(() => Object.values(MarketCategory).filter(category => category !== MarketCategory.Unknown), []);
 
     function handleFormSubmit() {
-        console.log('Submit!');
+        onSubmit(formValues);
     }
 
     function handleCategoryClick(category: MarketCategory) {
