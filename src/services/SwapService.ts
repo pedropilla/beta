@@ -5,5 +5,7 @@ export interface SwapFormValues {
     fromToken: TokenViewModel;
     toToken: TokenViewModel;
     amountIn: string;
+    formattedAmountIn: string;
     amountOut: string;
+    formattedAmountOut: string;
 }

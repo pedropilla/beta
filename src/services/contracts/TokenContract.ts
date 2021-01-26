@@ -1,5 +1,6 @@
 import { Account, Contract } from "near-api-js";
 import { MAX_GAS, PROTOCOL_ACCOUNT_ID, STORAGE_DEFAULT } from "../../config";
+import { toCollateralToken } from "../CollateralTokenService";
 import { SwapFormValues } from "../SwapService";
 import { connectWallet } from "../WalletService";
 
@@ -37,15 +38,15 @@ export class TokenContract {
             function: "buy",
             args: {
                 market_id: marketId,
-                outcome_id: values.toToken.outcomeId,
-                min_shares_out: values.amountOut // TODO: add default slippage check to amountOut and make it expectedAmountOut
+                outcome_target: values.toToken.outcomeId,
+                min_shares_out: toCollateralToken(values.amountOut) // TODO: add default slippage check to amountOut and make it expectedAmountOut
             }
         });
 
         // @ts-ignore
         return this.contract.transfer_with_vault({
                 receiver_id: PROTOCOL_ACCOUNT_ID,
-                amount: values.amountIn,
+                amount: toCollateralToken(values.amountIn),
                 payload: payload
             },
             MAX_GAS,

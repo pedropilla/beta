@@ -7,7 +7,9 @@ export default function createDefaultSwapFormValues(fromToken: TokenViewModel, t
         type: BUY,
         fromToken,
         toToken,
-        amountIn: "",
-        amountOut: ""
+        amountIn: "1", // TODO: Remove
+        amountOut: "0",
+        formattedAmountIn: "",
+        formattedAmountOut: ""
     }
 }

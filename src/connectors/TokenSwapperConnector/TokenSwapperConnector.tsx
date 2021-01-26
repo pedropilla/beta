@@ -44,6 +44,7 @@ export default function TokenSwapperConnector({
 
     return (
         <TokenSwapper
+            market={market}
             inputs={switched ? market.outcomeTokens : inputs}
             outputs={switched ? inputs : market.outcomeTokens}
             onConfirm={onConfirm}

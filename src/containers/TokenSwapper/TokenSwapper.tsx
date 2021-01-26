@@ -1,4 +1,4 @@
-import React, { FormEvent, ReactElement, useCallback, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import classnames from 'classnames';
 
 import Button from '../../components/Button';
@@ -11,6 +11,9 @@ import SwapOverview from './components/SwapOverview/SwapOverview';
 import s from './TokenSwapper.module.scss';
 import createDefaultSwapFormValues from './utils/createDefaultSwapFormValues';
 import { SwapFormValues } from '../../services/SwapService';
+import mutateFormValues from './utils/formValuesMutation';
+import { MarketViewModel } from '../../models/Market';
+import { toCollateralToken } from '../../services/CollateralTokenService';
 
 interface TokenSwapperProps {
     inputs: TokenViewModel[];
@@ -18,9 +21,11 @@ interface TokenSwapperProps {
     onRequestSwitchPairs: () => void;
     onConfirm: (formData: SwapFormValues) => Promise<void>;
     className?: string;
+    market: MarketViewModel
 }
 
 export default function TokenSwapper({
+    market,
     inputs,
     outputs,
     onConfirm,
@@ -29,8 +34,8 @@ export default function TokenSwapper({
 }: TokenSwapperProps): ReactElement {
     const [formValues, setFormValues] = useState(createDefaultSwapFormValues(inputs[0], outputs[0]));
 
-    function handleSubmit() {
-        onConfirm(formValues);
+    function handleSubmit(mutatedValues: SwapFormValues) {
+        onConfirm(mutatedValues);
     }
 
     function handleInputTokenSwitch(token: TokenViewModel) {
@@ -50,15 +55,13 @@ export default function TokenSwapper({
     function handleAmountInChange(value: string) {
         setFormValues({
             ...formValues,
-            amountIn: value
+            formattedAmountIn: value,
+            amountIn: value ? toCollateralToken(value) : "0"
         });
     }
 
     function handleAmountOutChange(value: string) {
-        setFormValues({
-            ...formValues,
-            amountOut: value
-        });
+        // TODO: remove this fn
     }
 
     function switchTokenPlaces() {
@@ -72,6 +75,11 @@ export default function TokenSwapper({
         onRequestSwitchPairs();
     }
 
+    const poolTokens = outputs.length > 1 ? outputs : inputs;
+    const shouldMutate = !!formValues.amountIn;
+    console.log(formValues.amountIn, shouldMutate);
+    const mutation = shouldMutate ? mutateFormValues(market.collateralToken.tokenName, formValues, poolTokens) : formValues;
+    console.log(shouldMutate)
     return (
         <form className={classnames(s['token-swapper'], className)}>
             <div className={s['token-swapper__token']}>
@@ -81,7 +89,7 @@ export default function TokenSwapper({
                 </div>
                 <TokenSelect
                     onTokenSwitch={handleInputTokenSwitch}
-                    value={formValues.amountIn}
+                    value={formValues.formattedAmountIn}
                     tokens={inputs}
                     selectedToken={formValues.fromToken}
                     onValueChange={(v) => handleAmountInChange(v)}
@@ -98,7 +106,7 @@ export default function TokenSwapper({
                 </div>
                 <TokenSelect
                     onTokenSwitch={handleOutputTokenSwitch}
-                    value={formValues.amountOut}
+                    value={mutation.formattedAmountOut}
                     tokens={outputs}
                     selectedToken={formValues.toToken}
                     onValueChange={(v) => handleAmountOutChange(v)}
@@ -112,7 +120,7 @@ export default function TokenSwapper({
                 <SwapOverview />
             </div>
 
-            <Button onClick={handleSubmit} className={s['token-swapper__confirm']}>
+            <Button onClick={() => handleSubmit(mutation)} className={s['token-swapper__confirm']}>
                 {trans('market.action.confirmSwap')}
             </Button>
         </form>

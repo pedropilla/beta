@@ -1,5 +1,5 @@
 import { Account, Contract } from "near-api-js";
-import { FUNGIBLE_TOKEN_ACCOUNT_ID, MAX_GAS, PROTOCOL_ACCOUNT_ID, STORAGE_DEFAULT } from "../../config";
+import { DEFAULT_FEE, FUNGIBLE_TOKEN_ACCOUNT_ID, MAX_GAS, PROTOCOL_ACCOUNT_ID, STORAGE_DEFAULT } from "../../config";
 import { SwapFormValues } from "../SwapService";
 import { connectWallet } from "../WalletService";
 
@@ -29,7 +29,7 @@ class ProtocolContract {
             end_time: endDate.getTime().toString(),
             collateral_token_id: FUNGIBLE_TOKEN_ACCOUNT_ID,
             categories,
-            swap_fee: "100000000000000",
+            swap_fee: DEFAULT_FEE.toString(),
         }, MAX_GAS, STORAGE_DEFAULT);
     }
 

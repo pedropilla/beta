@@ -22,12 +22,16 @@ export const calcBuyAmountInShares = (
   poolBalances: Big[],
   fee: number,
 ): Big => {
+  Big.DP = 0;
   if (outcomeIndex < 0 || outcomeIndex >= poolBalances.length) {
     throw new Error(`Outcome index '${outcomeIndex}' must be between 0 and '${poolBalances.length - 1}'`);
   }
   if (investmentAmount.eq(0) || poolBalances.every(x => x.eq(0))) return ZERO;
 
+  console.log(investmentAmount.toString(), fee)
   const investmentAmountMinusFees = investmentAmount.mul(1 - fee);
+  console.log(investmentAmountMinusFees.toString())
+  poolBalances.forEach(b => {console.log(b.toString())})
   const newOutcomeBalance = poolBalances.reduce(
     (accumulator, poolBalance, i) =>
       i !== outcomeIndex

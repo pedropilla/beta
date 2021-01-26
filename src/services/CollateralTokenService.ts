@@ -1,19 +1,21 @@
 // import { utils } from 'near-api-js';
-import BN from 'bn.js';
+import Big from 'big.js';
 
 import { FUNGIBLE_TOKEN_ACCOUNT_ID } from "../config";
 import { isFetchResultSuccesful } from "../models/FetchResult";
 import { getTokenPriceByTicker } from "./TokenPriceService";
 import { connectNear } from "./WalletService";
 
-export function formatCollateralToken(amount: string, decimals = 18): string {
-    const denominator = new BN(10).pow(new BN(decimals));
-    return new BN(amount).div(denominator).toString();
+export function formatCollateralToken(amount: string, decimals = 18, dp = 2): string {
+    Big.DP = dp;
+    const denominator = new Big(10).pow(decimals);
+    return new Big(amount).div(denominator).toString();
 }
 
 export function toCollateralToken(amount: string, decimals = 18): string {
-    const denominator = new BN(10).pow(new BN(decimals));
-    return new BN(amount).mul(denominator).toString();
+    Big.DP = 0;
+    const denominator = new Big(10).pow(decimals);
+    return new Big(amount).mul(denominator).toString();
 }
 
 export interface AccountTokenBalance {
