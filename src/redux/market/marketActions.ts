@@ -1,5 +1,5 @@
 import { createMarket, getMarketById, getMarkets, getResolutingMarkets, MarketFilters, MarketFormValues } from "../../services/MarketService";
-import { seedPool, SeedPoolFormValues } from "../../services/PoolService";
+import { publishPool, seedPool, SeedPoolFormValues } from "../../services/PoolService";
 import { setMarketErrors, setMarketLoading, setMarketDetail, setMarkets, setResolutingMarkets, setMarketEditLoading } from "./market";
 
 export function createNewMarket(values: MarketFormValues) {
@@ -73,5 +73,11 @@ export function fetchResolutingMarkets() {
 export function seedPoolAction(marketId: string, values: SeedPoolFormValues) {
     return async (dispatch: Function) => {
         await seedPool(marketId, values);
+    }
+}
+
+export function publishPoolAction(marketId: string, amountIn: string, tokenAccountId: string) {
+    return async (dispatch: Function) => {
+        await publishPool(marketId, amountIn, tokenAccountId);
     }
 }

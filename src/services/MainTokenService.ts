@@ -35,6 +35,13 @@ export function formatMainToken(balance: string, digits: number = 3) {
     return utils.format.formatNearAmount(balance, digits);
 }
 
+export function toMainTokenFraction(amount: string): string {
+    const result = utils.format.parseNearAmount(amount);
+
+    if (!result) return "0";
+    return result;
+}
+
 export async function getMainToken(): Promise<FetchResult<TokenViewModel, string>> {
     try {
         const priceDataResponse = await getCurrentMainTokenPrice();

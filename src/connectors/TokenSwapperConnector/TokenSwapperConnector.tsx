@@ -31,7 +31,7 @@ export default function TokenSwapperConnector({
     ): Promise<void> {
         if (!market) throw new Error("Market is undefined");
 
-        if (values.fromToken.tokenName === market.collateralToken) {
+        if (values.fromToken.tokenName === market.collateralTokenId) {
             const token = await createTokenContract(values.fromToken.tokenName);
             return token.buy(market.id, values);
         } else {

@@ -5,7 +5,6 @@ import { Reducers } from '../../redux/reducers';
 
 
 export default function LiquidityProviderConnector(): ReactElement {
-
     const mainToken = useSelector((store: Reducers) => store.tokens.mainToken);
 
     if (!mainToken) {

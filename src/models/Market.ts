@@ -31,6 +31,10 @@ export interface GraphMarketResponse {
             balance: string;
             price: number;
         }[];
+        tokens_info: {
+            is_pool_token: boolean;
+            total_supply: string;
+        }[];
     }
 }
 
@@ -45,15 +49,20 @@ export interface MarketViewModel {
     volume: string;
     category: (MarketCategory | string)[];
     extraInfo: string;
-    collateralToken: string;
+    collateralTokenId: string;
+    poolTokenInfo: {
+        totalSupply: string;
+    };
 }
 
 export function transformToMarketViewModel(graphResponse: GraphMarketResponse): MarketViewModel {
     const outcomes = transformToPoolBalanceViewModel(graphResponse.pool.pool_balances as any, graphResponse.outcome_tags);
+    const tokensInfo = graphResponse.pool.tokens_info || [];
+    const poolTokenInfo = tokensInfo.find(info => info.is_pool_token);
 
     return {
         id: graphResponse.id,
-        category: graphResponse.categories,
+        category: graphResponse.categories || [],
         description: graphResponse.description,
         extraInfo: graphResponse.extra_info,
         finalized: graphResponse.finalized,
@@ -62,6 +71,9 @@ export function transformToMarketViewModel(graphResponse: GraphMarketResponse): 
         resolutionDate: new Date(parseInt(graphResponse.end_time)),
         public: graphResponse.pool.public,
         volume: graphResponse.volume,
-        collateralToken: FUNGIBLE_TOKEN_ACCOUNT_ID,
+        collateralTokenId: FUNGIBLE_TOKEN_ACCOUNT_ID,
+        poolTokenInfo: {
+            totalSupply: poolTokenInfo?.total_supply || '0',
+        }
     }
 }

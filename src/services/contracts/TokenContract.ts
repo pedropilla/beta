@@ -1,16 +1,27 @@
 import { Account, Contract } from "near-api-js";
-import { FUNGIBLE_TOKEN_ACCOUNT_ID, MAX_GAS, PROTOCOL_ACCOUNT_ID, STORAGE_DEFAULT } from "../../config";
+import { MAX_GAS, PROTOCOL_ACCOUNT_ID, STORAGE_DEFAULT } from "../../config";
 import { SwapFormValues } from "../SwapService";
 import { connectWallet } from "../WalletService";
 
-class TokenContract {
+export class TokenContract {
     contract: Contract;
 
     constructor(account: Account, tokenAccountId: string) {
         this.contract = new Contract(account, tokenAccountId, {
             viewMethods: ['get_balance'],
-            changeMethods: ['transfer_with_vault'],
+            changeMethods: ['transfer_with_vault', 'register_account'],
         });
+    }
+
+    async registerAccount() {
+        // @todo This is very inconvenient for UX
+        // @ts-ignore
+        return this.contract.register_account({
+            account_id: this.contract.account.accountId,
+        },
+            MAX_GAS,
+            STORAGE_DEFAULT,
+        );
     }
 
     async getBalance(accountId: string): Promise<void> {
@@ -33,27 +44,69 @@ class TokenContract {
 
         // @ts-ignore
         return this.contract.transfer_with_vault({
-                receiver_id: this.contract.account.accountId,
-                amount: "1",
+                receiver_id: PROTOCOL_ACCOUNT_ID,
+                amount: values.amountIn,
                 payload: payload
             },
-            values.amountIn,
-            MAX_GAS
-        )
+            MAX_GAS,
+            STORAGE_DEFAULT,
+        );
     }
 
+    async joinPool(marketId: string, amountIn: string) {
+        let payload = JSON.stringify({
+            function: "join_pool",
+            args: {
+                market_id: marketId,
+            }
+        });
 
+        // @ts-ignore
+        return this.contract.transfer_with_vault({
+                receiver_id: PROTOCOL_ACCOUNT_ID,
+                amount: amountIn,
+                payload: payload
+            },
+            MAX_GAS,
+            STORAGE_DEFAULT,
+        );
+    }
+
+    async publishPool(marketId: string, amountIn: string) {
+        let payload = JSON.stringify({
+            function: "publish_pool",
+            args: {
+                market_id: marketId,
+            }
+        });
+
+        // @ts-ignore
+        return this.contract.transfer_with_vault({
+            receiver_id: PROTOCOL_ACCOUNT_ID,
+            amount: amountIn,
+            payload: payload
+        },
+            MAX_GAS,
+            STORAGE_DEFAULT,
+        );
+    }
 }
 
-let protocolInstance: TokenContract;
+let tokenInstances: Map<string, TokenContract> = new Map();
+
+// @ts-ignore
+window.createTokenContract = createTokenContract;
 
 export default async function createTokenContract(tokenAccountId: string): Promise<TokenContract> {
-    if (protocolInstance) {
-        return protocolInstance;
+    const instance = tokenInstances.get(tokenAccountId)
+    if (instance) {
+        return instance;
     }
 
     const wallet = await connectWallet();
-    protocolInstance = new TokenContract(wallet.account(), tokenAccountId);
+    const newInstance = new TokenContract(wallet.account(), tokenAccountId);
 
-    return protocolInstance;
+    tokenInstances.set(tokenAccountId, newInstance);
+
+    return newInstance;
 }

@@ -20,14 +20,16 @@ interface Props {
     market: MarketViewModel;
     mainToken: TokenViewModel;
     account: Account | null,
-    onSubmit: (values: SeedPoolFormValues) => void;
+    onSeedPool: (values: SeedPoolFormValues) => void;
+    onFinalizePool: () => void;
 }
 
 export default function SeedPool({
     market,
     account,
     mainToken,
-    onSubmit,
+    onSeedPool,
+    onFinalizePool,
 }: Props) {
     const [formValues, setFormValues] = useState(createDefaultSeedPoolFormValues());
 
@@ -105,9 +107,15 @@ export default function SeedPool({
                     <Button
                         className={s.confirmButton}
                         disabled={!errors.canSubmit}
-                        onClick={() => onSubmit(formValues)}
+                        onClick={() => onSeedPool(formValues)}
                     >
                         {trans('seedPool.action.submit')}
+                    </Button>
+                    <Button
+                        className={s.confirmButton}
+                        onClick={() => onFinalizePool()}
+                    >
+                        {trans('seedPool.action.finalize')}
                     </Button>
                 </form>
             ))}

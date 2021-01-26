@@ -81,7 +81,8 @@
     "seedPool.not100Percent": "All the weight combined equal :percentage but should equal 100",
     "seedPool.inputZero": "Outcome can't have a weight of zero or less",
     "seedPool.input100": "Outcome can't have a weight of 100 or higher",
-    "seedPool.action.submit": "Finalize pool",
+    "seedPool.action.submit": "Seed pool",
+    "seedPool.action.finalize": "Publish pool",
     "seedPool.weightsTitle": "Outcome weights",
     "seedPool.label.mainTokenBalance": "NEAR input",
 

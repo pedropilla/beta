@@ -18,7 +18,18 @@ export interface PoolBalanceGraphData {
     weight: string;
 }
 
-export function transformToPoolBalanceViewModel(response: PoolBalanceGraphData[], outcomeTags: string[]) {
+export function transformToPoolBalanceViewModel(response: PoolBalanceGraphData[], outcomeTags: string[]): PoolBalanceViewModel[] {
+    // @todo write this in a simpler way (start with outcome tags and work your way back)
+    if (!response.length) {
+        return outcomeTags.map((tag, index) => ({
+            outcomeId: index,
+            outcomeLabel: tag,
+            poolWeight: new BN('0'),
+            price: 0,
+            weight: 0,
+        }));
+    }
+
     const totalWeight = response
         .reduce((prev, current) => prev.add(new BN(current.weight)), new BN(0));
 

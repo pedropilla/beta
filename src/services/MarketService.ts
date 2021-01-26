@@ -58,6 +58,10 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
                                 balance
                                 price
                             }
+                            tokens_info {
+                                is_pool_token
+                                total_supply
+                            }
                         }
                         description
                         outcome_tags
