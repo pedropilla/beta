@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import { format } from 'date-fns';
+import { DEFAULT_LIMIT } from '../config';
 
 import { FetchResult, FetchResultType } from '../models/FetchResult';
 import { GraphMarketResponse, MarketCategory, MarketViewModel, transformToMarketViewModel } from '../models/Market';
@@ -101,14 +102,15 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
 export interface MarketFilters {
     categories?: MarketCategory[];
     expired?: boolean;
+    limit?: number;
 }
 
 export async function getMarkets(filters: MarketFilters): Promise<MarketViewModel[]> {
     try {
         const result = await graphqlClient.query<any>({
             query: gql`
-                query Markets($expired: Boolean, $categories: [String]) {
-                    market: getMarkets(filters: { expired: $expired, categories: $categories }) {
+                query Markets($expired: Boolean, $categories: [String], $limit: Int) {
+                    market: getMarkets(filters: { expired: $expired, categories: $categories, limit: $limit }) {
                         items {
                             pool {
                                 public
@@ -138,6 +140,7 @@ export async function getMarkets(filters: MarketFilters): Promise<MarketViewMode
             variables: {
                 expired: filters.expired,
                 categories: filters.categories,
+                limit: DEFAULT_LIMIT
             }
         });
 
