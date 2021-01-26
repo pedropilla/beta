@@ -9,12 +9,18 @@ import s from './LiquidityProvider.module.scss';
 
 interface Props {
     token: TokenViewModel;
+    onSubmit: (amountIn: string) => void;
 }
 
 export default function LiquidityProvider({
     token,
+    onSubmit,
 }: Props): ReactElement {
     const [liquidityAmount, setLiquidityAmount] = useState('0');
+
+    function handleSubmit() {
+        onSubmit(liquidityAmount);
+    }
 
     return (
         <div>
@@ -26,7 +32,7 @@ export default function LiquidityProvider({
                 tokens={[token]}
                 className={s.tokenSelect}
             />
-            <Button className={s.confirm}>
+            <Button onClick={handleSubmit} className={s.confirm}>
                 {trans('market.action.confirmLiquidity')}
             </Button>
         </div>
