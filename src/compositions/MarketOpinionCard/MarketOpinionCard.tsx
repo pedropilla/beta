@@ -14,7 +14,6 @@ interface Props {
 export default function MarketOpinionCard({
     market,
 }: Props): ReactElement {
-    console.log(market)
     return (
         <div className={s.root}>
             <h2 className={s['title']}>
