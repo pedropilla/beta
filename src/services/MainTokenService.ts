@@ -1,8 +1,8 @@
+import BN from 'bn.js';
 import { utils } from 'near-api-js';
 import { COINGECKO_API_URL, FUNGIBLE_TOKEN_ACCOUNT_ID } from "../config";
 import { FetchResult, FetchResultType, isFetchResultSuccesful } from '../models/FetchResult';
 import { TokenViewModel } from '../models/TokenViewModel';
-import { sleep } from '../utils/sleep';
 import { getAccountInfo } from './AccountService';
 
 const MAIN_TOKEN = 'near';
@@ -53,8 +53,6 @@ export async function getMainToken(): Promise<FetchResult<TokenViewModel, string
 
         const accountBalance = account ? account.balance : '0';
 
-        await sleep(2000);
-
         return {
             type: FetchResultType.Success,
             status: 200,
@@ -65,6 +63,9 @@ export async function getMainToken(): Promise<FetchResult<TokenViewModel, string
                 balanceFormatted: formatMainToken(accountBalance),
                 tokenSymbol: 'Ⓝ',
                 outcomeId: NaN,
+                poolWeight: new BN(0),
+                weight: 0,
+                decimals: 18,
             },
         };
     } catch (error) {

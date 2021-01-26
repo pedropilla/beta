@@ -1,5 +1,6 @@
+import BN from "bn.js";
 import { PoolBalanceGraphData, transformToPoolBalanceViewModel } from "./PoolBalance";
-
+import { AccountTokenBalance, getCollateralTokenBalance, getCollateralTokenPrice } from '../services/CollateralTokenService';
 export interface TokenViewModel {
     tokenName: string;
     balance: string;
@@ -7,6 +8,10 @@ export interface TokenViewModel {
     price: number;
     tokenSymbol: string;
     outcomeId: number;
+    tokenAccountId?: string;
+    poolWeight: BN;
+    weight: number;
+    decimals: number;
 }
 
 export function generateTokenName(tokenName: string): string {
@@ -43,6 +48,56 @@ export function transformToTokenViewModels(
             tokenName: poolBalance.outcomeLabel,
             tokenSymbol: generateTokenName(poolBalance.outcomeLabel),
             outcomeId: poolBalance.outcomeId,
+            weight: poolBalance.weight,
+            poolWeight: poolBalance.poolWeight,
+            decimals: 18,
         };
     });
+}
+
+export function newTransformToTokenViewModels(
+    tags: string[],
+    poolBalanceData: PoolBalanceGraphData[] = [],
+): TokenViewModel[] {
+    const poolBalances = transformToPoolBalanceViewModel(poolBalanceData, tags);
+
+    return tags.map((outcome, outcomeId) => {
+        const poolBalance = poolBalances.find(poolBalance => poolBalance.outcomeId === outcomeId);
+
+        return {
+            balance: '0',
+            balanceFormatted: '0',
+            outcomeId,
+            price: poolBalance?.price || 0,
+            tokenSymbol: generateTokenName(outcome),
+            tokenName: outcome,
+            poolWeight: poolBalance?.poolWeight || new BN(0),
+            weight: poolBalance?.weight || 0,
+            decimals: 18,
+        };
+    });
+}
+
+export async function transformToMainTokenViewModel(collateralTokenAccountId: string, accountId?: string): Promise<TokenViewModel> {
+    let balances: AccountTokenBalance = {
+        balance: '0',
+        balanceFormatted: '0',
+    };
+
+    if (accountId) {
+        balances = await getCollateralTokenBalance(collateralTokenAccountId, accountId);
+    }
+
+    return {
+        balance: balances.balance,
+        balanceFormatted: balances.balanceFormatted,
+        decimals: 18,
+        outcomeId: NaN,
+        poolWeight: new BN(0),
+        price: await getCollateralTokenPrice(collateralTokenAccountId),
+        tokenName: collateralTokenAccountId,
+        tokenSymbol: collateralTokenAccountId,
+        weight: 0,
+        tokenAccountId: collateralTokenAccountId,
+    };
 }

@@ -53,9 +53,9 @@ export default function SeedPool({
     useEffect(() => {
         setFormValues({
             ...formValues,
-            outcomePercentages: market.outcomes.map(() => 0)
+            outcomePercentages: market.outcomeTokens.map(() => 0)
         });
-    }, [market.outcomes]);
+    }, [market.outcomeTokens]);
 
     const errors = validateSeedPool(formValues);
 
@@ -84,7 +84,7 @@ export default function SeedPool({
                     <h3>{trans('seedPool.weightsTitle')}</h3>
                     {formValues.outcomePercentages.map((percentage, index) => (
                         <div className={s.inputWrapper} key={index}>
-                            <Label text={market.outcomes[index].outcomeLabel} />
+                            <Label text={market.outcomeTokens.find(outcome => outcome.outcomeId === index)?.tokenName || ""} />
                             <TextInput
                                 value={percentage.toString()}
                                 type="number"

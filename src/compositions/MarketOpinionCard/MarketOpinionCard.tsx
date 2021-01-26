@@ -19,13 +19,13 @@ export default function MarketOpinionCard({
             <h2 className={s['title']}>
                 {trans('market.label.opinion')}
             </h2>
-            <TokenWeightsBar weights={market.outcomes.map(b => b.weight)} className={s['token-weight-bar']} />
+            <TokenWeightsBar weights={market.outcomeTokens.map(b => b.weight)} className={s['token-weight-bar']} />
             <div className={s['outcomes-wrapper']}>
-                {market.outcomes.map((outcome, index) => (
+                {market.outcomeTokens.map((outcome, index) => (
                     <div key={outcome.outcomeId} className={s['outcome']}>
                         <div className={s['outcome-label-wrapper']}>
                             <div style={{ backgroundColor: `var(${getColorForOutcome(index)})` }} className={s['color-label']} />
-                            <span>{outcome.outcomeLabel}</span>
+                            <span>{outcome.tokenName}</span>
                         </div>
                         <span>{outcome.weight}%</span>
                     </div>

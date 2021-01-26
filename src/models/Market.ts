@@ -1,5 +1,5 @@
-import { PoolBalanceViewModel, transformToPoolBalanceViewModel } from "./PoolBalance";
 import { FUNGIBLE_TOKEN_ACCOUNT_ID } from "../config";
+import { newTransformToTokenViewModels, TokenViewModel, transformToMainTokenViewModel } from "./TokenViewModel";
 
 export enum MarketCategory {
     Stocks = 'stocks',
@@ -25,6 +25,7 @@ export interface GraphMarketResponse {
     pool: {
         public: boolean;
         owner: string;
+        collateral_token_id: string;
         pool_balances: {
             weight: string;
             outcome_id: number;
@@ -45,18 +46,18 @@ export interface MarketViewModel {
     owner: string;
     description: string;
     resolutionDate: Date;
-    outcomes: PoolBalanceViewModel[];
     volume: string;
     category: (MarketCategory | string)[];
     extraInfo: string;
     collateralTokenId: string;
+    outcomeTokens: TokenViewModel[];
+    collateralToken: TokenViewModel;
     poolTokenInfo: {
         totalSupply: string;
     };
 }
 
-export function transformToMarketViewModel(graphResponse: GraphMarketResponse): MarketViewModel {
-    const outcomes = transformToPoolBalanceViewModel(graphResponse.pool.pool_balances as any, graphResponse.outcome_tags);
+export async function transformToMarketViewModel(graphResponse: GraphMarketResponse, accountId?: string): Promise<MarketViewModel> {
     const tokensInfo = graphResponse.pool.tokens_info || [];
     const poolTokenInfo = tokensInfo.find(info => info.is_pool_token);
 
@@ -66,12 +67,16 @@ export function transformToMarketViewModel(graphResponse: GraphMarketResponse): 
         description: graphResponse.description,
         extraInfo: graphResponse.extra_info,
         finalized: graphResponse.finalized,
-        outcomes,
         owner: graphResponse.pool.owner,
         resolutionDate: new Date(parseInt(graphResponse.end_time)),
         public: graphResponse.pool.public,
         volume: graphResponse.volume,
         collateralTokenId: FUNGIBLE_TOKEN_ACCOUNT_ID,
+        collateralToken: await transformToMainTokenViewModel(graphResponse.pool.collateral_token_id, accountId),
+        outcomeTokens: newTransformToTokenViewModels(
+            graphResponse.outcome_tags,
+            graphResponse.pool.pool_balances as any
+        ),
         poolTokenInfo: {
             totalSupply: poolTokenInfo?.total_supply || '0',
         }

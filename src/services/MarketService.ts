@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 
 import { FetchResult, FetchResultType } from '../models/FetchResult';
 import { GraphMarketResponse, MarketCategory, MarketViewModel, transformToMarketViewModel } from '../models/Market';
+import { getAccountInfo } from './AccountService';
 import createProtocolContract from './contracts/ProtocolContract';
 import { graphqlClient } from './GraphQLService';
 
@@ -52,6 +53,7 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
                         pool {
                             public
                             owner
+                            collateral_token_id
                             pool_balances {
                                 weight
                                 outcome_id
@@ -79,7 +81,9 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
             }
         });
 
-        return transformToMarketViewModel(result.data.market);
+        const account = await getAccountInfo();
+
+        return transformToMarketViewModel(result.data.market, account ? account.accountId : undefined);
     } catch (error) {
         console.error('[getMarketById]', error);
         return null;
@@ -102,6 +106,7 @@ export async function getMarkets(filters: MarketFilters): Promise<MarketViewMode
                             pool {
                                 public
                                 owner
+                                collateral_token_id
                                 pool_balances {
                                     weight
                                     outcome_id
@@ -117,6 +122,7 @@ export async function getMarkets(filters: MarketFilters): Promise<MarketViewMode
                             id
                             volume
                             categories
+
                         }
                         total
                     }
@@ -128,7 +134,9 @@ export async function getMarkets(filters: MarketFilters): Promise<MarketViewMode
             }
         });
 
-        return result.data.market.items.map((market: GraphMarketResponse) => transformToMarketViewModel(market));
+        const marketsPromises = result.data.market.items.map((market: GraphMarketResponse) => transformToMarketViewModel(market));
+
+        return Promise.all(marketsPromises);
     } catch (error) {
         console.error('[getMarketById]', error);
         return [];

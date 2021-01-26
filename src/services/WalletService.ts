@@ -39,6 +39,24 @@ export function getNetworkConfig(networkName: string, nodeUrl?: string): Network
     return network;
 }
 
+let nearInstance: Near;
+
+export async function connectNear() {
+    if (nearInstance) {
+        return nearInstance;
+    }
+
+    const networkConfig = getNetworkConfig('testnet');
+    nearInstance = await connect({
+        ...networkConfig,
+        deps: {
+            keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+        }
+    });
+
+    return nearInstance;
+}
+
 let walletConnection: WalletConnection;
 
 export async function connectWallet(): Promise<WalletConnection> {
@@ -46,13 +64,7 @@ export async function connectWallet(): Promise<WalletConnection> {
         return walletConnection;
     }
 
-    const networkConfig = getNetworkConfig('testnet');
-    const near = await connect({
-        ...networkConfig,
-        deps: {
-            keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-        }
-    });
+    const near = await connectNear();
 
     walletConnection = new WalletConnection(near, NULL_CONTRACT);
     return walletConnection;

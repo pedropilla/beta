@@ -16,15 +16,13 @@ export default function TokenSwapperConnector({
     className,
 }: Props): ReactElement {
     const [switched, setSwitched] = useState(false);
-    const mainToken = useSelector((store: Reducers) => store.tokens.mainToken);
     const market = useSelector((store: Reducers) => store.market.marketDetail);
-    const outputs = useSelector((store: Reducers) => store.tokens.marketOutcomeTokens);
 
-    if (!mainToken || !outputs.length) {
+    if (!market) {
         return <TokenSwapperLoader />;
     }
 
-    const inputs: TokenViewModel[] = [mainToken];
+    const inputs: TokenViewModel[] = [market.collateralToken];
 
     async function onConfirm(
         values: SwapFormValues
@@ -46,8 +44,8 @@ export default function TokenSwapperConnector({
 
     return (
         <TokenSwapper
-            inputs={switched ? outputs : inputs}
-            outputs={switched ? inputs : outputs}
+            inputs={switched ? market.outcomeTokens : inputs}
+            outputs={switched ? inputs : market.outcomeTokens}
             onConfirm={onConfirm}
             onRequestSwitchPairs={handleRequestSwitchPairs}
             className={className}
