@@ -30,7 +30,7 @@ export default function SeedPoolConnector() {
     return <SeedPool
         account={account}
         market={market}
-        mainToken={mainToken}
+        mainToken={market.collateralToken}
         onSeedPool={handleSeedPool}
         onFinalizePool={handleFinalize}
     />
