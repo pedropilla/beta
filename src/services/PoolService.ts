@@ -1,7 +1,7 @@
 import { calcDistributionHint } from "../utils/calcDistributionHint";
+import { toCollateralToken } from "./CollateralTokenService";
 import createProtocolContract from "./contracts/ProtocolContract";
 import createTokenContract from "./contracts/TokenContract";
-import { toMainTokenFraction } from "./MainTokenService";
 
 export interface SeedPoolFormValues {
     outcomePercentages: number[];
@@ -14,7 +14,7 @@ export async function seedPool(marketId: string, values: SeedPoolFormValues) {
 
     protocol.seedPool(
         marketId,
-        toMainTokenFraction(values.mainTokenInput.toString()),
+        toCollateralToken(values.mainTokenInput.toString()),
         weights.map(outcome => outcome.toString())
     );
 }
@@ -22,7 +22,10 @@ export async function seedPool(marketId: string, values: SeedPoolFormValues) {
 export async function publishPool(marketId: string, amountIn: string, tokenId: string) {
     const token = await createTokenContract(tokenId);
 
-    console.log('[] token -> ', token);
-
     token.publishPool(marketId, amountIn);
+}
+
+export async function joinPool(marketId: string, amountIn: string, tokenId: string) {
+    const token = await createTokenContract(tokenId);
+    token.joinPool(marketId, toCollateralToken(amountIn));
 }
