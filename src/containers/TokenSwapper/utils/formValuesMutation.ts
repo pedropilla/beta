@@ -10,6 +10,7 @@ export default function mutateFormValues(collateralAccountId: string, formValues
     let poolBalances = tokens.map(token => new Big(token.poolWeight.toString()));
     let buy = formValues.fromToken.tokenAccountId == collateralAccountId;
     const formattedFee = DEFAULT_FEE / 100;
+    console.log(poolBalances)
     const amountOut = buy ? calcBuyAmountInShares(
             new Big(formValues.amountIn), 
             formValues.toToken.outcomeId, 
@@ -18,7 +19,7 @@ export default function mutateFormValues(collateralAccountId: string, formValues
         ) :
         calcSellAmountInCollateral(
             new Big(formValues.amountIn),
-            formValues.toToken.outcomeId,
+            formValues.fromToken.outcomeId,
             poolBalances,
             formattedFee
         )

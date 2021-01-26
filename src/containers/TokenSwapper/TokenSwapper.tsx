@@ -56,7 +56,7 @@ export default function TokenSwapper({
         setFormValues({
             ...formValues,
             formattedAmountIn: value,
-            amountIn: value ? toCollateralToken(value) : "0"
+            amountIn: value ? toCollateralToken(value) : ""
         });
     }
 
@@ -75,11 +75,10 @@ export default function TokenSwapper({
         onRequestSwitchPairs();
     }
 
+    
     const poolTokens = outputs.length > 1 ? outputs : inputs;
-    const shouldMutate = !!formValues.amountIn;
-    console.log(formValues.amountIn, shouldMutate);
+    const shouldMutate = !!formValues.formattedAmountIn;
     const mutation = shouldMutate ? mutateFormValues(market.collateralToken.tokenName, formValues, poolTokens) : formValues;
-    console.log(shouldMutate)
     return (
         <form className={classnames(s['token-swapper'], className)}>
             <div className={s['token-swapper__token']}>
