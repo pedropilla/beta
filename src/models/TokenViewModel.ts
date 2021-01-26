@@ -1,6 +1,7 @@
 import BN from "bn.js";
 import { PoolBalanceGraphData, transformToPoolBalanceViewModel } from "./PoolBalance";
-import { AccountTokenBalance, getCollateralTokenBalance, getCollateralTokenPrice } from '../services/CollateralTokenService';
+import { AccountTokenBalance, formatCollateralToken, getCollateralTokenBalance, getCollateralTokenPrice } from '../services/CollateralTokenService';
+import { UserBalance } from "./UserBalance";
 export interface TokenViewModel {
     tokenName: string;
     balance: string;
@@ -58,15 +59,17 @@ export function transformToTokenViewModels(
 export function newTransformToTokenViewModels(
     tags: string[],
     poolBalanceData: PoolBalanceGraphData[] = [],
+    userBalances: UserBalance[],
 ): TokenViewModel[] {
     const poolBalances = transformToPoolBalanceViewModel(poolBalanceData, tags);
 
     return tags.map((outcome, outcomeId) => {
         const poolBalance = poolBalances.find(poolBalance => poolBalance.outcomeId === outcomeId);
+        const userBalance = userBalances.find(userBalance => userBalance.outcomeId === outcomeId);
 
         return {
-            balance: '0',
-            balanceFormatted: '0',
+            balance: userBalance?.balance || '0',
+            balanceFormatted: formatCollateralToken(userBalance?.balance || '0'),
             outcomeId,
             price: poolBalance?.price || 0,
             tokenSymbol: generateTokenName(outcome),

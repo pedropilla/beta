@@ -3,7 +3,8 @@ import { format } from 'date-fns';
 
 import { FetchResult, FetchResultType } from '../models/FetchResult';
 import { GraphMarketResponse, MarketCategory, MarketViewModel, transformToMarketViewModel } from '../models/Market';
-import { getAccountInfo } from './AccountService';
+import { UserBalance } from '../models/UserBalance';
+import { getAccountInfo, getBalancesForMarketByAccount } from './AccountService';
 import createProtocolContract from './contracts/ProtocolContract';
 import { graphqlClient } from './GraphQLService';
 
@@ -82,8 +83,14 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
         });
 
         const account = await getAccountInfo();
+        const accountId = account ? account.accountId : undefined;
+        let balances: UserBalance[] = [];
 
-        return transformToMarketViewModel(result.data.market, account ? account.accountId : undefined);
+        if (accountId) {
+            balances = await getBalancesForMarketByAccount(accountId, marketId);
+        }
+
+        return transformToMarketViewModel(result.data.market, accountId, balances);
     } catch (error) {
         console.error('[getMarketById]', error);
         return null;

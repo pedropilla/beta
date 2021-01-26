@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 import { NULL_CONTRACT } from "../config";
 import { Account } from "../models/Account";
 import { PoolToken } from "../models/PoolToken";
+import { GraphUserBalanceResponse, transformToUserBalance, UserBalance } from "../models/UserBalance";
 import trans from "../translation/trans";
 import { graphqlClient } from "./GraphQLService";
 import { connectWallet } from "./WalletService";
@@ -71,6 +72,33 @@ export async function getPoolTokensByAccountId(accountId: string): Promise<PoolT
         return x;
     } catch (error) {
         console.error('[getPoolTokensByAccountId]', error);
+        return [];
+    }
+}
+
+export async function getBalancesForMarketByAccount(accountId: string, marketId: string): Promise<UserBalance[]> {
+    try {
+        const result = await graphqlClient.query({
+            query: gql`
+                query AccountMarketBalances($accountId: String!, $marketId: String) {
+                    account: getAccount(accountId: $accountId) {
+                        balances(poolId: $marketId) {
+                            balance
+                            outcome_id
+                        }
+                    }
+                }
+            `,
+            variables: {
+                accountId,
+                marketId,
+            }
+        });
+
+        const data: GraphUserBalanceResponse = result.data.account;
+        return data.balances.map(transformToUserBalance);
+    } catch (error) {
+        console.error('[getBalancesForMarketByAccount]', error);
         return [];
     }
 }

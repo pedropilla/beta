@@ -1,5 +1,6 @@
 import { FUNGIBLE_TOKEN_ACCOUNT_ID } from "../config";
 import { newTransformToTokenViewModels, TokenViewModel, transformToMainTokenViewModel } from "./TokenViewModel";
+import { UserBalance } from "./UserBalance";
 
 export enum MarketCategory {
     Stocks = 'stocks',
@@ -57,7 +58,7 @@ export interface MarketViewModel {
     };
 }
 
-export async function transformToMarketViewModel(graphResponse: GraphMarketResponse, accountId?: string): Promise<MarketViewModel> {
+export async function transformToMarketViewModel(graphResponse: GraphMarketResponse, accountId?: string, userBalances: UserBalance[] = []): Promise<MarketViewModel> {
     const tokensInfo = graphResponse.pool.tokens_info || [];
     const poolTokenInfo = tokensInfo.find(info => info.is_pool_token);
 
@@ -75,7 +76,8 @@ export async function transformToMarketViewModel(graphResponse: GraphMarketRespo
         collateralToken: await transformToMainTokenViewModel(graphResponse.pool.collateral_token_id, accountId),
         outcomeTokens: newTransformToTokenViewModels(
             graphResponse.outcome_tags,
-            graphResponse.pool.pool_balances as any
+            graphResponse.pool.pool_balances as any,
+            userBalances,
         ),
         poolTokenInfo: {
             totalSupply: poolTokenInfo?.total_supply || '0',
