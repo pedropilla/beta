@@ -11,3 +11,4 @@ export const ONE = new BN((10 ** 18).toString());
 export const ZERO = new BN("0");
 export const BUY = "BUY";
 export const SELL = "SELL";
+export const DEFAULT_FEE = 2 * 10 ** 16;
