@@ -7,7 +7,10 @@ import Big from "big.js";
 import { calcSellAmountInCollateral } from "../../../utils/calcSellAmountOut";
 
 export default function mutateFormValues(collateralAccountId: string, formValues: SwapFormValues, tokens: TokenViewModel[]): SwapFormValues {
-    let poolBalances = tokens.map(token => new Big(token.poolWeight.toString()));
+    let poolBalances = tokens.map(token => {
+
+        return new Big(token.poolWeight.toString())
+    });
     let buy = formValues.fromToken.tokenAccountId == collateralAccountId;
     const formattedFee = DEFAULT_FEE / 100;
 
@@ -31,7 +34,7 @@ export default function mutateFormValues(collateralAccountId: string, formValues
             amountOut: "0"
         }
     }
-    
+
     return {
         ...formValues,
         formattedAmountOut: formatCollateralToken(amountOut.toString()),
