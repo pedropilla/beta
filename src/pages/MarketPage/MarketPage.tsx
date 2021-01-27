@@ -20,6 +20,7 @@ import { Helmet } from 'react-helmet';
 import { Reducers } from '../../redux/reducers';
 import ClaimFeesConnector from '../../connectors/ClaimFeesConnector';
 import SeedPoolConnector from '../../connectors/SeedPoolConnector';
+import MarketClosed from '../../containers/MarketClosed';
 
 interface RouterParams {
     marketId: string;
@@ -71,8 +72,13 @@ export default function MarketPage() {
                         }, {
                             element: <SeedPoolConnector key="seedpool" />,
                             label: trans('market.label.seedPool'),
-                            show: market?.finalized === false && market.public === false,
+                            show: market?.finalized === false && market.public === false && market.resolutionDate > new Date(),
                             id: '3',
+                        }, {
+                            element: <MarketClosed key="marketClosed" />,
+                            label: trans('market.label.marketClosed'),
+                            show: market?.finalized === false && market.resolutionDate <= new Date(),
+                            id: '4',
                         }]}
                     />
                 </ActionsCard>
