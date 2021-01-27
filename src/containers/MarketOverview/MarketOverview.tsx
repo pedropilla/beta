@@ -58,24 +58,24 @@ export default function MarketOverview({
                     />
                 ))}
             </div>
-            <div className={s.markets}>
-                <InfiniteScroll
-                    dataLength={markets.length}
-                    next={onRequestMoreMarkets}
-                    hasMore={hasMoreMarkets}
-                    loader={<div />}
-                    className={s.markets}
-                >
-                    {markets.map(market => (
-                        <MarketCard
-                            key={market.id}
-                            href={routePaths.marketDetail(market.id)}
-                            className={s.market}
-                            market={market}
-                        />
-                    ))}
-                </InfiniteScroll>
+            <InfiniteScroll
+                dataLength={markets.length}
+                next={onRequestMoreMarkets}
+                hasMore={hasMoreMarkets}
+                loader={<div />}
+                className={s.markets}
+            >
+                {markets.map(market => (
+                    <MarketCard
+                        key={market.id}
+                        href={routePaths.marketDetail(market.id)}
+                        className={s.market}
+                        market={market}
+                    />
+                ))}
+            </InfiniteScroll>
 
+            <div className={s.markets}>
                 {loading && (
                     new Array(9).fill('').map((_, index) => (
                         <div className={s.market} key={index}>
