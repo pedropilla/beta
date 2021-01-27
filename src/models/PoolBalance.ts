@@ -1,11 +1,12 @@
-import BN from "bn.js";
-// TODO ASK FRANKLIN
+import Big from "big.js";
 export interface PoolBalanceViewModel {
     outcomeId: number;
     price: number;
     weight: number;
-    poolWeight: BN;
+    poolWeight: Big;
     outcomeLabel: string;
+    poolBalance: string;
+    odds: Big;
 }
 
 export interface PoolBalanceGraphData {
@@ -16,6 +17,7 @@ export interface PoolBalanceGraphData {
     balance: string;
     price: number;
     weight: string;
+    odds: string;
 }
 
 export function transformToPoolBalanceViewModel(response: PoolBalanceGraphData[], outcomeTags: string[]): PoolBalanceViewModel[] {
@@ -24,26 +26,25 @@ export function transformToPoolBalanceViewModel(response: PoolBalanceGraphData[]
         return outcomeTags.map((tag, index) => ({
             outcomeId: index,
             outcomeLabel: tag,
-            poolWeight: new BN('0'),
+            poolWeight: new Big('0'),
             price: 0,
             weight: 0,
+            poolBalance: "0",
+            odds: new Big(0),
         }));
     }
 
-    const totalWeight = response
-        .reduce((prev, current) => prev.add(new BN(current.weight)), new BN(0));
-
     return response.map((poolBalance) => {
-        const poolWeight = new BN(poolBalance.weight);
-        const base = new BN(poolBalance.weight).mul(new BN(100));
-        const weight = base.divRound(totalWeight);
+        const poolWeight = new Big(poolBalance.weight);
 
         return {
             outcomeId: poolBalance.outcome_id,
             outcomeLabel: outcomeTags[poolBalance.outcome_id],
             price: poolBalance.price,
             poolWeight,
-            weight: weight.toNumber(), // TODO: wut?
+            poolBalance: poolBalance.balance,
+            weight: 0,
+            odds: new Big(poolBalance.odds),
         };
     }).sort((a, b) => a.outcomeId - b.outcomeId);
 }

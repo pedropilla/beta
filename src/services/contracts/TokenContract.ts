@@ -1,9 +1,8 @@
-import BN from "bn.js";
-
 import { Account, Contract } from "near-api-js";
 import { MAX_GAS, PROTOCOL_ACCOUNT_ID, STORAGE_DEFAULT } from "../../config";
 import { SwapFormValues } from "../SwapService";
 import { connectWallet } from "../WalletService";
+import BN from "bn.js";
 
 export class TokenContract {
     contract: Contract;
@@ -35,7 +34,6 @@ export class TokenContract {
         marketId: string,
         values: SwapFormValues
     ): Promise<void> {
-
         let payload = JSON.stringify({
             function: "buy",
             args: {

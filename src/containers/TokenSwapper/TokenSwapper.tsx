@@ -75,22 +75,22 @@ export default function TokenSwapper({
         onRequestSwitchPairs();
     }
 
-    
+
     const poolTokens = outputs.length > 1 ? outputs : inputs;
-    const shouldMutate = !!formValues.formattedAmountIn;
-    const mutation = shouldMutate ? mutateFormValues(market.collateralToken.tokenName, formValues, poolTokens) : formValues;
+    const mutation = mutateFormValues(formValues, poolTokens);
+
     return (
         <form className={classnames(s['token-swapper'], className)}>
             <div className={s['token-swapper__token']}>
                 <div className={s['token-swapper__token-header']}>
                     <span>{trans('market.label.youPay')}</span>
-                    <span>{trans('global.balance', {}, true)}: {formValues.fromToken.balanceFormatted}</span>
+                    <span>{trans('global.balance', {}, true)}: {mutation.fromToken.balanceFormatted}</span>
                 </div>
                 <TokenSelect
                     onTokenSwitch={handleInputTokenSwitch}
-                    value={formValues.formattedAmountIn}
+                    value={mutation.formattedAmountIn}
                     tokens={inputs}
-                    selectedToken={formValues.fromToken}
+                    selectedToken={mutation.fromToken}
                     onValueChange={(v) => handleAmountInChange(v)}
                 />
             </div>
@@ -107,7 +107,7 @@ export default function TokenSwapper({
                     onTokenSwitch={handleOutputTokenSwitch}
                     value={mutation.formattedAmountOut}
                     tokens={outputs}
-                    selectedToken={formValues.toToken}
+                    selectedToken={mutation.toToken}
                     onValueChange={(v) => handleAmountOutChange(v)}
                 />
             </div>
