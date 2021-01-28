@@ -60,6 +60,9 @@ export async function getAccountBalancesInfo(accountId: string): Promise<Account
                             market {
                                 description
                                 outcome_tags
+                                end_time
+                                finalized
+                                payout_numerator
                             }
                         }
                     }

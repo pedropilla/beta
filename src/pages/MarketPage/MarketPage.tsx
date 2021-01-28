@@ -18,7 +18,7 @@ import LiquidityProviderConnector from '../../connectors/LiquidityProviderConnec
 import s from './MarketPage.module.scss';
 import { Helmet } from 'react-helmet';
 import { Reducers } from '../../redux/reducers';
-import ClaimFeesConnector from '../../connectors/ClaimFeesConnector';
+import ClaimEarningsConnector from '../../connectors/ClaimEarningsConnector';
 import SeedPoolConnector from '../../connectors/SeedPoolConnector';
 import MarketClosed from '../../containers/MarketClosed';
 
@@ -64,8 +64,8 @@ export default function MarketPage() {
                             show: market?.public === true && market?.finalized === false,
                             id: '1',
                         }, {
-                            element: <ClaimFeesConnector key="claimfees" />,
-                            label: trans('market.label.claimFees'),
+                            element: <ClaimEarningsConnector key="claimEarnings" />,
+                            label: trans('market.label.claimEarnings'),
                             show: market?.finalized === true,
                             id: '2',
                         }, {
