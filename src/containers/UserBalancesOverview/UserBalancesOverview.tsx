@@ -31,6 +31,7 @@ export default function UserBalancesOverview({
                         <th>{trans('userbalances.table.market')}</th>
                         <th>{trans('userbalances.table.outcome')}</th>
                         <th>{trans('userbalances.table.balance')}</th>
+                        <th>{trans('userbalances.table.status')}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,6 +51,11 @@ export default function UserBalancesOverview({
                             <td>
                                 <Link to={routePaths.marketDetail(info.marketId)} className={s.link}>
                                     {formatCollateralToken(info.balance)}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link to={routePaths.marketDetail(info.marketId)} className={s.link}>
+                                    {info.marketStatus}
                                 </Link>
                             </td>
                         </tr>
