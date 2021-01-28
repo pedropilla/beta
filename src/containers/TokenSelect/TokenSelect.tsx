@@ -14,6 +14,8 @@ interface Props {
     selectedToken: TokenViewModel;
     tokens: TokenViewModel[];
     value: string;
+    error?: string;
+    showPrice?: boolean;
     onValueChange: (newValue: string) => void;
     onTokenSwitch: (token: TokenViewModel) => void;
 }
@@ -24,6 +26,7 @@ export default function TokenSelect({
     value,
     onTokenSwitch,
     onValueChange,
+    showPrice = true,
     className = '',
 }: Props) {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -41,7 +44,8 @@ export default function TokenSelect({
         <div className={classnames(s['token-select'], className)}>
             <div className={s['token-select__info']}>
                 <span>{selectedToken.tokenName} {trans('global.token')}</span>
-                <span>${selectedToken.price}</span>
+                {showPrice && <span>${selectedToken.price}</span>}
+                {!showPrice && <span />}
             </div>
             <div className={s['token-select__inputs']}>
                 <div className={s['token-select__inputs-info']}>

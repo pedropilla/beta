@@ -27,10 +27,12 @@ export default function LiquidityProvider({
             <p>
                 {trans('liquidityProvider.description')}
             </p>
+
             <div className={s.header}>
                 <span>{trans('market.label.youPay')}</span>
                 <span>{trans('global.balance', {}, true)}: {token.balanceFormatted}</span>
             </div>
+
             <TokenSelect
                 value={liquidityAmount}
                 onValueChange={(v) => setLiquidityAmount(v)}
@@ -39,6 +41,7 @@ export default function LiquidityProvider({
                 tokens={[token]}
                 className={s.tokenSelect}
             />
+
             <Button onClick={handleSubmit} className={s.confirm}>
                 {trans('market.action.confirmLiquidity')}
             </Button>

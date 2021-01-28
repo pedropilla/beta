@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import { NULL_CONTRACT } from "../config";
 import { Account } from "../models/Account";
-import { GraphAcountBalancesResponse, PoolToken, transformToPoolToken } from "../models/PoolToken";
+import { EarnedFeesGraphData, GraphAcountBalancesResponse, PoolToken, transformToPoolToken } from "../models/PoolToken";
 import { GraphUserBalanceResponse, transformToUserBalance, UserBalance } from "../models/UserBalance";
 import trans from "../translation/trans";
 import { graphqlClient } from "./GraphQLService";
@@ -107,8 +107,42 @@ export async function getBalancesForMarketByAccount(accountId: string, marketId:
 
         const data: GraphUserBalanceResponse = result.data.account;
         return data.balances.map(transformToUserBalance);
+} catch (error) {
+    console.error('[getBalancesForMarketByAccount]', error);
+        return [];
+    }
+}
+
+export async function getPoolBalanceForMarketByAccount(accountId: string, marketId: string): Promise<PoolToken | null> {
+    try {
+        const result = await graphqlClient.query({
+            query: gql`
+                query AccountMarketPoolBalances($accountId: String!, $marketId: String) {
+                    account: getAccount(accountId: $accountId) {
+                        earned_fees(poolId: $marketId) {
+                            balance
+                            fees
+                            outcomeId
+                            poolId
+                        }
+                    }
+                }
+            `,
+            variables: {
+                accountId,
+                marketId,
+            }
+        });
+
+        const data: EarnedFeesGraphData[] = result.data.account.earned_fees;
+
+        if (!data.length) {
+            return null;
+        }
+
+        return transformToPoolToken(data[0]);
     } catch (error) {
         console.error('[getBalancesForMarketByAccount]', error);
-        return [];
+        return null;
     }
 }

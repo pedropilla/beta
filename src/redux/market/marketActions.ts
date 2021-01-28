@@ -1,6 +1,7 @@
+import { getAccountInfo, getPoolBalanceForMarketByAccount } from "../../services/AccountService";
 import { createMarket, getMarketById, getMarkets, getResolutingMarkets, MarketFilters, MarketFormValues } from "../../services/MarketService";
-import { publishPool, seedPool, SeedPoolFormValues } from "../../services/PoolService";
-import { appendMarkets, setMarketErrors, setMarketLoading, setMarketDetail, setMarkets, setResolutingMarkets, setMarketEditLoading } from "./market";
+import { publishPool, seedPool, exitPool, SeedPoolFormValues } from "../../services/PoolService";
+import { appendMarkets, setMarketErrors, setMarketLoading, setMarketDetail, setMarkets, setResolutingMarkets, setMarketEditLoading, setMarketPoolTokenBalance } from "./market";
 
 export function createNewMarket(values: MarketFormValues) {
     return async (dispatch: Function) => {
@@ -27,6 +28,16 @@ export function fetchMarketById(id: string) {
             if (!market) {
                 dispatch(setMarketErrors(['Could not find market']));
                 return;
+            }
+
+            const account = await getAccountInfo();
+
+            if (account) {
+                const token = await getPoolBalanceForMarketByAccount(account.accountId, id);
+
+                if (token) {
+                    dispatch(setMarketPoolTokenBalance(token));
+                }
             }
 
             dispatch(setMarketDetail(market));
@@ -84,5 +95,11 @@ export function seedPoolAction(marketId: string, values: SeedPoolFormValues) {
 export function publishPoolAction(marketId: string, amountIn: string, tokenAccountId: string) {
     return async (dispatch: Function) => {
         await publishPool(marketId, amountIn, tokenAccountId);
+    }
+}
+
+export function exitPoolAction(marketId: string, amountIn: string) {
+    return async (dispatch: Function) => {
+        await exitPool(marketId, amountIn);
     }
 }
