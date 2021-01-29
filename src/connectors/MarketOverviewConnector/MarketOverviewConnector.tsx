@@ -43,7 +43,6 @@ export default function MarketOverviewConnector(): ReactElement {
             limit: DEFAULT_LIMIT,
             categories: queryParams.getAll('categories') as MarketCategory[],
         };
-
         dispatch(fetchMarkets(newActiveFilters));
         setFilters(newActiveFilters);
     }, [location]);

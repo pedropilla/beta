@@ -12,10 +12,9 @@ import configureStore from './redux/store';
 import './styles/global.module.scss';
 
 const store = configureStore({});
-
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename="/beta">
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <StylesProvider injectFirst>
                     <App />

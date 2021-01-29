@@ -53,7 +53,6 @@ export function fetchMarkets(filters: MarketFilters, append?: boolean) {
     return async (dispatch: Function) => {
         try {
             dispatch(setMarketLoading(true));
-
             const markets = await getMarkets(filters);
 
             if (append) {
