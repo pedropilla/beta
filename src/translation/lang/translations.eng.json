@@ -19,6 +19,12 @@
     "home.title.welcome": "Welcome :username",
     "home.title.latestTrends": "These are the latest trends",
 
+    "marketStatus.uknown": "Unknown",
+    "marketStatus.finalized": "Finalized",
+    "marketStatus.invalid": "Invalid",
+    "marketStatus.resoluting": "Resoluting",
+    "marketStatus.ongoing": "On going",
+
     "market.title.head": ":appName - :description",
     "market.extraInfo": "Extra info",
     "market.resolutionDate": "Resolution date",
@@ -26,7 +32,7 @@
     "market.action.confirmLiquidity": "Add liquidity",
     "market.action.switchTokens": "Switch tokens",
     "market.action.changeTradingPair": "Change trading pair",
-    "market.action.claimFees": "Claim :amount",
+    "market.action.claimEarnings": "Claim",
 
     "market.label.resolutionInfo": "Resolution info",
     "market.label.totalVolume": "Total volume",
@@ -36,12 +42,17 @@
     "market.label.overview": "Overview",
     "market.label.swap": "Swap",
     "market.label.liquidity": "Liquidity",
-    "market.label.claimFees": "Claim fees",
+    "market.label.claimEarnings": "Claim",
     "market.label.seedPool": "Seed pool",
     "market.label.marketClosed": "Market closed",
     "market.label.exitPool": "Exit Pool",
 
-    "market.claimFees.description": "You can claim a total of :amount.",
+    "market.claimEarnings.validMarket": "This market was resoluted and marked as valid. You can claim your earnings below",
+    "market.claimEarnings.invalidMarket": "This market was marked as invalid, you can claim all your tokens back.",
+    "market.claimEarnings.label.outcome": "Outcome",
+    "market.claimEarnings.label.balance": "Balance",
+    "market.claimEarnings.label.payout": "Payout",
+
     "market.overview.rate": "Rate",
     "market.overview.inverseRate": "Inverse rate",
     "market.overview.estimatedFee": "Estimated fee",
@@ -114,5 +125,6 @@
     "userbalances.title": "Balances",
     "userbalances.table.market": "Market",
     "userbalances.table.outcome": "Outcome",
-    "userbalances.table.balance": "Balance"
+    "userbalances.table.balance": "Balance",
+    "userbalances.table.status": "Status"
 }

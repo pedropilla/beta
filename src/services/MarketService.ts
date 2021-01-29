@@ -77,6 +77,7 @@ export async function getMarketById(marketId: string): Promise<MarketViewModel |
                         id
                         volume
                         categories
+                        payout_numerator
                     }
                 }
             `,
@@ -171,6 +172,11 @@ export async function getResolutingMarkets(): Promise<MarketViewModel[]> {
         console.error('[getMarketById]', error);
         return [];
     }
+}
+
+export async function claimEarningsForMarket(marketId: string) {
+    const protocol = await createProtocolContract();
+    protocol.claimEarnings(marketId);
 }
 
 export function formatResolutionDate(resolutionDate: Date): string {

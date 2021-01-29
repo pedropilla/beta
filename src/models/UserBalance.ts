@@ -1,8 +1,11 @@
+import trans from "../translation/trans";
+
 export interface UserBalance {
     outcomeId: number;
     balance: string;
     marketId: string;
     marketDescription: string;
+    marketStatus: string;
     outcomeTag: string;
 }
 
@@ -13,11 +16,33 @@ export interface GraphUserBalancesItem {
     market?: {
         description: string;
         outcome_tags: string[];
+        finalized: boolean;
+        end_time: string;
+        payout_numerator: string[] | null;
     }
 }
 
 export interface GraphUserBalanceResponse {
     balances: GraphUserBalancesItem[];
+}
+
+function getMarketStatus(data: GraphUserBalancesItem['market']) {
+    if (!data) {
+        return trans('marketStatus.uknown');
+    }
+
+    const endTime = new Date(parseInt(data.end_time));
+    const now = new Date();
+
+    if (data.finalized && data.payout_numerator !== null) {
+        return trans('marketStatus.finalized');
+    } else if (data.finalized && data.payout_numerator === null) {
+        return trans('marketStatus.invalid');
+    } else if (!data.finalized && now.getTime() >= endTime.getTime()) {
+        return trans('marketStatus.resoluting');
+    } else {
+        return trans('marketStatus.ongoing');
+    }
 }
 
 export function transformToUserBalance(graphData: GraphUserBalancesItem): UserBalance {
@@ -26,6 +51,7 @@ export function transformToUserBalance(graphData: GraphUserBalancesItem): UserBa
         outcomeId: graphData.outcome_id,
         marketId: graphData.pool_id,
         marketDescription: graphData.market?.description || '',
+        marketStatus: getMarketStatus(graphData.market),
         outcomeTag: graphData.market?.outcome_tags[graphData.outcome_id] || '',
     }
 }

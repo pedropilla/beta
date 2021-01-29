@@ -15,7 +15,7 @@ import ActionsCard from '../../components/ActionsCard';
 import TabbedView from '../../containers/TabbedViews';
 import LiquidityProviderConnector from '../../connectors/LiquidityProviderConnector';
 import { Reducers } from '../../redux/reducers';
-import ClaimFeesConnector from '../../connectors/ClaimFeesConnector';
+import ClaimEarningsConnector from '../../connectors/ClaimEarningsConnector';
 import SeedPoolConnector from '../../connectors/SeedPoolConnector';
 import MarketClosed from '../../containers/MarketClosed';
 import ExitPoolConnector from '../../connectors/ExitPoolConnector';
@@ -65,8 +65,8 @@ export default function MarketPage() {
                             show: market?.public === true && market?.finalized === false,
                             id: '1',
                         }, {
-                            element: <ClaimFeesConnector key="claimfees" />,
-                            label: trans('market.label.claimFees'),
+                            element: <ClaimEarningsConnector key="claimEarnings" />,
+                            label: trans('market.label.claimEarnings'),
                             show: market?.finalized === true,
                             id: '2',
                         }, {

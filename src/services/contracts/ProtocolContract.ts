@@ -12,7 +12,7 @@ class ProtocolContract {
     constructor(account: Account) {
         this.contract = new Contract(account, PROTOCOL_ACCOUNT_ID, {
             viewMethods: [],
-            changeMethods: ['create_market', 'seed_pool', 'sell', 'exit_pool'],
+            changeMethods: ['create_market', 'seed_pool', 'sell', 'exit_pool', 'claim_earnings'],
         });
     }
 
@@ -70,6 +70,15 @@ class ProtocolContract {
             collateral_out: values.amountOut,
             outcome_target: values.fromToken.outcomeId,
             max_shares_in: new BN(values.amountIn).mul(new BN("102")).div(new BN("100")).toString()
+        }, MAX_GAS, STORAGE_DEFAULT)
+    }
+
+    async claimEarnings(
+        marketId: string,
+    ): Promise<void> {
+        // @ts-ignore
+        this.contract.claim_earnings({
+            market_id: marketId,
         }, MAX_GAS, STORAGE_DEFAULT)
     }
 }
