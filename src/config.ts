@@ -12,5 +12,6 @@ export const ZERO = new BN("0");
 export const BUY = "BUY";
 export const SELL = "SELL";
 export const DEFAULT_FEE = 2; // 2%
+export const DEFAULT_SLIPPAGE = 2; // 2%
 
 export const DEFAULT_LIMIT = 100;

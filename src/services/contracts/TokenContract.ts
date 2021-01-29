@@ -1,7 +1,7 @@
 import BN from "bn.js";
 
 import { Account, Contract } from "near-api-js";
-import { MAX_GAS, PROTOCOL_ACCOUNT_ID, STORAGE_DEFAULT } from "../../config";
+import { DEFAULT_SLIPPAGE, MAX_GAS, PROTOCOL_ACCOUNT_ID, STORAGE_DEFAULT } from "../../config";
 import { SwapFormValues } from "../SwapService";
 import { connectWallet } from "../WalletService";
 
@@ -40,7 +40,7 @@ export class TokenContract {
             args: {
                 market_id: marketId,
                 outcome_target: values.toToken.outcomeId,
-                min_shares_out: new BN(values.amountOut).mul(new BN("98")).div(new BN("100")).toString() // TODO: add default slippage check to amountOut and make it expectedAmountOut
+                min_shares_out: new BN(values.amountOut).mul(new BN("100").sub(new BN(DEFAULT_SLIPPAGE))).div(new BN("100")).toString() // TODO: add default slippage check to amountOut and make it expectedAmountOut
             }
         });
 

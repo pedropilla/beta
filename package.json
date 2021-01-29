@@ -1,6 +1,6 @@
 {
-  "homepage": "https://fluxprotocol.github.io/beta",
-  "name": "flux-app-amm",
+  "homepage": "https://fluxprotocol.github.io/beta/",
+  "name": "demo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
