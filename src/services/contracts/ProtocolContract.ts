@@ -1,7 +1,7 @@
 import BN from "bn.js";
 
 import { Account, Contract } from "near-api-js";
-import { DEFAULT_FEE, FUNGIBLE_TOKEN_ACCOUNT_ID, MAX_GAS, PROTOCOL_ACCOUNT_ID, STORAGE_DEFAULT } from "../../config";
+import { DEFAULT_FEE, DEFAULT_SLIPPAGE, FUNGIBLE_TOKEN_ACCOUNT_ID, MAX_GAS, PROTOCOL_ACCOUNT_ID, STORAGE_DEFAULT } from "../../config";
 import { toCollateralToken } from "../CollateralTokenService";
 import { SwapFormValues } from "../SwapService";
 import { connectWallet } from "../WalletService";
@@ -69,7 +69,7 @@ class ProtocolContract {
             market_id: marketId,
             collateral_out: values.amountOut,
             outcome_target: values.fromToken.outcomeId,
-            max_shares_in: new BN(values.amountIn).mul(new BN("102")).div(new BN("100")).toString()
+            max_shares_in: new BN(values.amountIn).mul(new BN("100").add(new BN(DEFAULT_SLIPPAGE))).div(new BN("100")).toString()
         }, MAX_GAS, STORAGE_DEFAULT)
     }
 
