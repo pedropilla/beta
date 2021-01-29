@@ -18,6 +18,12 @@
     "home.title.welcome": "Welcome :username",
     "home.title.latestTrends": "These are the latest trends",
 
+    "marketStatus.uknown": "Unknown",
+    "marketStatus.finalized": "Finalized",
+    "marketStatus.invalid": "Invalid",
+    "marketStatus.resoluting": "Resoluting",
+    "marketStatus.ongoing": "On going",
+
     "market.title.head": ":appName - :description",
     "market.extraInfo": "Extra info",
     "market.resolutionDate": "Resolution date",
@@ -25,7 +31,7 @@
     "market.action.confirmLiquidity": "Add liquidity",
     "market.action.switchTokens": "Switch tokens",
     "market.action.changeTradingPair": "Change trading pair",
-    "market.action.claimFees": "Claim :amount",
+    "market.action.claimEarnings": "Claim",
 
     "market.label.resolutionInfo": "Resolution info",
     "market.label.totalVolume": "Total volume",
@@ -35,10 +41,16 @@
     "market.label.overview": "Overview",
     "market.label.swap": "Swap",
     "market.label.liquidity": "Liquidity",
-    "market.label.claimFees": "Claim fees",
+    "market.label.claimEarnings": "Claim",
     "market.label.seedPool": "Seed pool",
+    "market.label.marketClosed": "Market closed",
 
-    "market.claimFees.description": "You can claim a total of :amount.",
+    "market.claimEarnings.validMarket": "This market was resoluted and marked as valid. You can claim your earnings below",
+    "market.claimEarnings.invalidMarket": "This market was marked as invalid, you can claim all your tokens back.",
+    "market.claimEarnings.label.outcome": "Outcome",
+    "market.claimEarnings.label.balance": "Balance",
+    "market.claimEarnings.label.payout": "Payout",
+
     "market.overview.rate": "Rate",
     "market.overview.inverseRate": "Inverse rate",
     "market.overview.estimatedFee": "Estimated fee",
@@ -51,6 +63,7 @@
     "market.category.startups": "Startups",
     "market.category.stocks": "Stocks",
     "market.category.viral": "Viral",
+    "market.category.beer": "Beer",
 
     "marketCreation.label.extraInfo": "Provide info to resolute the market",
     "marketCreation.label.categorySelect": "Select one or more category",
@@ -62,6 +75,8 @@
     "marketCreation.label.outcomes": "Outcomes",
     "marketCreation.label.outcome": "Outcome :number",
     "marketCreation.label.addMoreOutcomes": "Add more outcomes",
+
+    "marketClosed.description": "This market has ended. Resolution is currently in progress, come back later to claim your earnings.",
 
     "marketResolution.title.head": ":appName - Resolute",
 
@@ -88,7 +103,19 @@
     "seedPool.weightsTitle": "Outcome weights",
     "seedPool.label.mainTokenBalance": "NEAR input",
 
+    "priceHistory.labels.1d": "1D",
+    "priceHistory.labels.1w": "1W",
+    "priceHistory.labels.3w": "3W",
+    "priceHistory.labels.1m": "1M",
+    "priceHistory.labels.all": "ALL",
+
     "auth.login": "Login",
 
-    "navigation.back": "Back"
+    "navigation.back": "Back",
+
+    "userbalances.title": "Balances",
+    "userbalances.table.market": "Market",
+    "userbalances.table.outcome": "Outcome",
+    "userbalances.table.balance": "Balance",
+    "userbalances.table.status": "Status"
 }

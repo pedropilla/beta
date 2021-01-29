@@ -18,8 +18,9 @@ import LiquidityProviderConnector from '../../connectors/LiquidityProviderConnec
 import s from './MarketPage.module.scss';
 import { Helmet } from 'react-helmet';
 import { Reducers } from '../../redux/reducers';
-import ClaimFeesConnector from '../../connectors/ClaimFeesConnector';
+import ClaimEarningsConnector from '../../connectors/ClaimEarningsConnector';
 import SeedPoolConnector from '../../connectors/SeedPoolConnector';
+import MarketClosed from '../../containers/MarketClosed';
 
 interface RouterParams {
     marketId: string;
@@ -32,7 +33,6 @@ export default function MarketPage() {
 
     useEffect(() => {
         dispatch(fetchMarketById(marketId));
-        dispatch(fetchPricesHistoryByMarketId(marketId));
     }, [dispatch, marketId]);
 
     return (
@@ -64,15 +64,20 @@ export default function MarketPage() {
                             show: market?.public === true && market?.finalized === false,
                             id: '1',
                         }, {
-                            element: <ClaimFeesConnector key="claimfees" />,
-                            label: trans('market.label.claimFees'),
+                            element: <ClaimEarningsConnector key="claimEarnings" />,
+                            label: trans('market.label.claimEarnings'),
                             show: market?.finalized === true,
                             id: '2',
                         }, {
                             element: <SeedPoolConnector key="seedpool" />,
                             label: trans('market.label.seedPool'),
-                            show: market?.finalized === false && market.public === false,
+                            show: market?.finalized === false && market.public === false && market.resolutionDate > new Date(),
                             id: '3',
+                        }, {
+                            element: <MarketClosed key="marketClosed" />,
+                            label: trans('market.label.marketClosed'),
+                            show: market?.finalized === false && market.resolutionDate <= new Date(),
+                            id: '4',
                         }]}
                     />
                 </ActionsCard>

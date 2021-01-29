@@ -23,7 +23,7 @@ import circleViral from '../assets/images/circle-viral.png';
 import iconViral from '../assets/images/icons/icon-viral.png';
 
 import circleBeer from '../assets/images/circle-beer.png';
-import iconBeer from '../assets/images/icons/icon-beer.png';
+import iconBeer from '../assets/images/icons/icon-beer.svg';
 
 import { MarketCategory } from "../models/Market";
 import trans from '../translation/trans';
@@ -118,7 +118,7 @@ export default function getCategoryInfo(category?: MarketCategory | string): Cat
                 cardIcon: '',
                 icon: iconBeer,
                 title: trans('market.category.beer'),
-                color: '#FF009C',
+                color: '#47A8BD',
             };
         default:
             return {

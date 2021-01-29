@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import { NULL_CONTRACT } from "../config";
 import { Account } from "../models/Account";
-import { PoolToken } from "../models/PoolToken";
+import { GraphAcountBalancesResponse, PoolToken, transformToPoolToken } from "../models/PoolToken";
 import { GraphUserBalanceResponse, transformToUserBalance, UserBalance } from "../models/UserBalance";
 import trans from "../translation/trans";
 import { graphqlClient } from "./GraphQLService";
@@ -33,20 +33,37 @@ export async function signUserOut() {
     connectedWallet.signOut();
 }
 
-export async function getPoolTokensByAccountId(accountId: string): Promise<PoolToken[]> {
+interface AccountBalancesInfo {
+    poolTokens: PoolToken[];
+    marketBalances: UserBalance[];
+}
+
+export async function getAccountBalancesInfo(accountId: string): Promise<AccountBalancesInfo> {
     try {
         const result = await graphqlClient.query({
             query: gql`
                 query Account($accountId: String!) {
-                    getAccount(accountId: $accountId) {
+                    account: getAccount(accountId: $accountId) {
                         earned_fees {
                             fees
                             outcomeId
                             poolId
+                            balance
+                            market {
+                                description
+                            }
                         }
                         balances {
                             balance
                             outcome_id
+                            pool_id
+                            market {
+                                description
+                                outcome_tags
+                                end_time
+                                finalized
+                                payout_numerator
+                            }
                         }
                     }
                 }
@@ -56,23 +73,18 @@ export async function getPoolTokensByAccountId(accountId: string): Promise<PoolT
             }
         });
 
-        console.log('[] result -> ', result);
+        const accountBalances: GraphAcountBalancesResponse = result.data.account;
 
-        const x: PoolToken[] = [
-            {
-                marketId: "1",
-                fees: '10000',
-                outcomeId: 1,
-                poolId: "1",
-                marketDescription: 'Will x do y?',
-                balance: '10000',
-            }
-        ];
-
-        return x;
+        return {
+            poolTokens: accountBalances.earned_fees.map(transformToPoolToken),
+            marketBalances: accountBalances.balances.map(transformToUserBalance),
+        };
     } catch (error) {
         console.error('[getPoolTokensByAccountId]', error);
-        return [];
+        return {
+             poolTokens: [],
+             marketBalances: [],
+        };
     }
 }
 
@@ -85,6 +97,7 @@ export async function getBalancesForMarketByAccount(accountId: string, marketId:
                         balances(poolId: $marketId) {
                             balance
                             outcome_id
+                            pool_id,
                         }
                     }
                 }
