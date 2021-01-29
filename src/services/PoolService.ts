@@ -29,3 +29,8 @@ export async function joinPool(marketId: string, amountIn: string, tokenId: stri
     const token = await createTokenContract(tokenId);
     token.joinPool(marketId, toCollateralToken(amountIn));
 }
+
+export async function exitPool(marketId: string, amountIn: string) {
+    const token = await createProtocolContract();
+    token.exitPool(marketId, toCollateralToken(amountIn));
+}

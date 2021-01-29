@@ -61,7 +61,11 @@ export interface MarketViewModel {
     };
 }
 
-export async function transformToMarketViewModel(graphResponse: GraphMarketResponse, collateralToken: TokenViewModel, userBalances: UserBalance[] = []): Promise<MarketViewModel> {
+export async function transformToMarketViewModel(
+    graphResponse: GraphMarketResponse,
+    collateralToken: TokenViewModel,
+    userBalances: UserBalance[] = [],
+): Promise<MarketViewModel> {
     const tokensInfo = graphResponse.pool.tokens_info || [];
     const poolTokenInfo = tokensInfo.find(info => info.is_pool_token);
     const payoutNumerator = graphResponse.payout_numerator ? graphResponse.payout_numerator : null;

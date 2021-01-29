@@ -6,6 +6,7 @@
     "global.token": "token",
     "global.balance": "balance",
     "global.comments": "Comments",
+    "global.poolToken": "Pool",
 
     "global.action.cancel": "Cancel",
     "global.action.submit": "Submit",
@@ -44,6 +45,7 @@
     "market.label.claimEarnings": "Claim",
     "market.label.seedPool": "Seed pool",
     "market.label.marketClosed": "Market closed",
+    "market.label.exitPool": "Exit Pool",
 
     "market.claimEarnings.validMarket": "This market was resoluted and marked as valid. You can claim your earnings below",
     "market.claimEarnings.invalidMarket": "This market was marked as invalid, you can claim all your tokens back.",
@@ -112,6 +114,13 @@
     "auth.login": "Login",
 
     "navigation.back": "Back",
+
+    "exitPool.description": "Removing pool tokens converts your position back into underlying tokens at the current rate, proportional to your share of the pool. Accrued fees are included in the amounts you receive.",
+    "exitPool.label.youInsert": "You insert",
+    "exitPool.action.exitPool": "Exit pool",
+    "exitPool.label.feesEarned": "Fees earned: :amount",
+    "exitPool.validation.amountIn.tooHigh": "Amount can't exceed balance",
+    "exitPool.validation.amountIn.negative": "Amount can't be zero or lower",
 
     "userbalances.title": "Balances",
     "userbalances.table.market": "Market",

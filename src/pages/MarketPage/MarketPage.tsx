@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { DiscussionEmbed } from 'disqus-react';
+import { Helmet } from 'react-helmet';
 
 import MarketHeaderConnector from '../../connectors/MarketHeaderConnector';
 import MarketResolutionInfoConenctor from '../../connectors/MarketResolutionInfoConnector';
@@ -9,18 +10,17 @@ import MarketStatisticsConnector from '../../connectors/MarketStatisticsConnecto
 import TokenSwapperConnector from '../../connectors/TokenSwapperConnector';
 import Page from '../../containers/Page';
 import { fetchMarketById } from '../../redux/market/marketActions';
-import { fetchPricesHistoryByMarketId } from '../../redux/priceHistory/priceHistoryActions';
 import trans from '../../translation/trans';
 import ActionsCard from '../../components/ActionsCard';
 import TabbedView from '../../containers/TabbedViews';
 import LiquidityProviderConnector from '../../connectors/LiquidityProviderConnector';
-
-import s from './MarketPage.module.scss';
-import { Helmet } from 'react-helmet';
 import { Reducers } from '../../redux/reducers';
 import ClaimEarningsConnector from '../../connectors/ClaimEarningsConnector';
 import SeedPoolConnector from '../../connectors/SeedPoolConnector';
 import MarketClosed from '../../containers/MarketClosed';
+import ExitPoolConnector from '../../connectors/ExitPoolConnector';
+
+import s from './MarketPage.module.scss';
 
 interface RouterParams {
     marketId: string;
@@ -29,6 +29,7 @@ interface RouterParams {
 export default function MarketPage() {
     const dispatch = useDispatch();
     const market = useSelector((store: Reducers) => store.market.marketDetail);
+    const poolToken = useSelector((store: Reducers) => store.market.poolTokenBalance);
     const { marketId } = useParams<RouterParams>();
 
     useEffect(() => {
@@ -78,6 +79,11 @@ export default function MarketPage() {
                             label: trans('market.label.marketClosed'),
                             show: market?.finalized === false && market.resolutionDate <= new Date(),
                             id: '4',
+                        }, {
+                            element: <ExitPoolConnector key="exitPool" />,
+                            label: trans('market.label.exitPool'),
+                            show: market?.public === true && !!poolToken,
+                            id: '5',
                         }]}
                     />
                 </ActionsCard>
