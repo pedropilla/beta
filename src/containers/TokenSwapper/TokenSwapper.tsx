@@ -16,6 +16,8 @@ import { MarketViewModel } from '../../models/Market';
 import { toCollateralToken } from '../../services/CollateralTokenService';
 import { BUY, SELL } from '../../config';
 
+import swap from "./../../assets/images/icons/swap.svg";
+
 interface TokenSwapperProps {
     inputs: TokenViewModel[];
     outputs: TokenViewModel[];
@@ -100,7 +102,7 @@ export default function TokenSwapper({
             </div>
 
             <div className={s['token-swapper__switch-tokens']}>
-                <IconButton onClick={switchTokenPlaces} icon="/assets/icons/swap.svg" alt={trans('market.action.switchTokens')} />
+                <IconButton onClick={switchTokenPlaces} icon={swap} alt={trans('market.action.switchTokens')} />
             </div>
 
             <div className={s['token-swapper__token']}>
