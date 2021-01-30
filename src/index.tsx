@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { StylesProvider } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
@@ -14,13 +14,13 @@ import './styles/global.module.scss';
 const store = configureStore({});
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter basename="/beta">
+        <HashRouter basename="/beta">
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <StylesProvider injectFirst>
                     <App />
                 </StylesProvider>
             </MuiPickersUtilsProvider>
-        </BrowserRouter>
+        </HashRouter>
     </Provider>,
     document.getElementById('root')
 );
