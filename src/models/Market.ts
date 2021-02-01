@@ -72,8 +72,7 @@ export async function transformToMarketViewModel(
 
     return {
         id: graphResponse.id,
-        // category: graphResponse.categories || [],
-        category: [MarketCategory.Beer],
+        category: graphResponse.categories || [],
         description: graphResponse.description,
         extraInfo: graphResponse.extra_info,
         finalized: graphResponse.finalized,
