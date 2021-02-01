@@ -1,16 +1,26 @@
 {
   "files": {
-    "main.css": "https://fluxprotocol.github.io/beta/static/css/main.c4ab31c1.chunk.css",
-    "main.js": "https://fluxprotocol.github.io/beta/static/js/main.bb360b1d.chunk.js",
-    "main.js.map": "https://fluxprotocol.github.io/beta/static/js/main.bb360b1d.chunk.js.map",
+    "main.css": "https://fluxprotocol.github.io/beta/static/css/main.c749884f.chunk.css",
+    "main.js": "https://fluxprotocol.github.io/beta/static/js/main.a60f76d1.chunk.js",
+    "main.js.map": "https://fluxprotocol.github.io/beta/static/js/main.a60f76d1.chunk.js.map",
     "runtime-main.js": "https://fluxprotocol.github.io/beta/static/js/runtime-main.2dda98de.js",
     "runtime-main.js.map": "https://fluxprotocol.github.io/beta/static/js/runtime-main.2dda98de.js.map",
-    "static/js/2.2b4c7645.chunk.js": "https://fluxprotocol.github.io/beta/static/js/2.2b4c7645.chunk.js",
-    "static/js/2.2b4c7645.chunk.js.map": "https://fluxprotocol.github.io/beta/static/js/2.2b4c7645.chunk.js.map",
+    "static/js/2.4eba819b.chunk.js": "https://fluxprotocol.github.io/beta/static/js/2.4eba819b.chunk.js",
+    "static/js/2.4eba819b.chunk.js.map": "https://fluxprotocol.github.io/beta/static/js/2.4eba819b.chunk.js.map",
     "index.html": "https://fluxprotocol.github.io/beta/index.html",
-    "static/css/main.c4ab31c1.chunk.css.map": "https://fluxprotocol.github.io/beta/static/css/main.c4ab31c1.chunk.css.map",
-    "static/js/2.2b4c7645.chunk.js.LICENSE.txt": "https://fluxprotocol.github.io/beta/static/js/2.2b4c7645.chunk.js.LICENSE.txt",
+    "static/css/main.c749884f.chunk.css.map": "https://fluxprotocol.github.io/beta/static/css/main.c749884f.chunk.css.map",
+    "static/js/2.4eba819b.chunk.js.LICENSE.txt": "https://fluxprotocol.github.io/beta/static/js/2.4eba819b.chunk.js.LICENSE.txt",
     "static/media/global.module.scss": "https://fluxprotocol.github.io/beta/static/media/background-wave-dark.0522574f.svg",
+    "static/media/card-beer.6ac3cfd7.png": "https://fluxprotocol.github.io/beta/static/media/card-beer.6ac3cfd7.png",
+    "static/media/card-crypto.bf8db90b.png": "https://fluxprotocol.github.io/beta/static/media/card-crypto.bf8db90b.png",
+    "static/media/card-esports.8d48d09a.png": "https://fluxprotocol.github.io/beta/static/media/card-esports.8d48d09a.png",
+    "static/media/card-meme.f06faaf2.png": "https://fluxprotocol.github.io/beta/static/media/card-meme.f06faaf2.png",
+    "static/media/card-politics.111b8d29.png": "https://fluxprotocol.github.io/beta/static/media/card-politics.111b8d29.png",
+    "static/media/card-sports.33a1b431.png": "https://fluxprotocol.github.io/beta/static/media/card-sports.33a1b431.png",
+    "static/media/card-startups.5109215d.png": "https://fluxprotocol.github.io/beta/static/media/card-startups.5109215d.png",
+    "static/media/card-stockmarket.9a6bbb30.png": "https://fluxprotocol.github.io/beta/static/media/card-stockmarket.9a6bbb30.png",
+    "static/media/card-viral.322ccb42.png": "https://fluxprotocol.github.io/beta/static/media/card-viral.322ccb42.png",
+    "static/media/circle-beer.a5c453f6.png": "https://fluxprotocol.github.io/beta/static/media/circle-beer.a5c453f6.png",
     "static/media/circle-crypto.369b0cdb.png": "https://fluxprotocol.github.io/beta/static/media/circle-crypto.369b0cdb.png",
     "static/media/circle-esports.590ba279.png": "https://fluxprotocol.github.io/beta/static/media/circle-esports.590ba279.png",
     "static/media/circle-meme.529c4322.png": "https://fluxprotocol.github.io/beta/static/media/circle-meme.529c4322.png",
@@ -34,8 +44,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.2dda98de.js",
-    "static/js/2.2b4c7645.chunk.js",
-    "static/css/main.c4ab31c1.chunk.css",
-    "static/js/main.bb360b1d.chunk.js"
+    "static/js/2.4eba819b.chunk.js",
+    "static/css/main.c749884f.chunk.css",
+    "static/js/main.a60f76d1.chunk.js"
   ]
 }
